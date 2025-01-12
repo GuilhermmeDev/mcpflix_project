@@ -4,7 +4,6 @@ interface SideItemProps {
   name: string;
   path: string;
 }
-
 export default function SideItem({ name, path }: SideItemProps) {
   return (
     <>
@@ -12,9 +11,11 @@ export default function SideItem({ name, path }: SideItemProps) {
         className="flex flex-row items-center gap-2 w-full justify-center md:justify-start"
         href="#"
       >
-        <i className={`${path} text-xl md:bg-transparent`} />
+        <i className={`${path} text-xl md:bg-transparent text-neutral-300`} />
 
-        <p className="text-neutral-300 text-base text-ellipsis overflow-hidden hidden md:block">
+        <p
+          className={`text-base text-ellipsis overflow-hidden hidden md:block`}
+        >
           {name}
         </p>
       </a>

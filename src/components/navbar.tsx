@@ -47,7 +47,7 @@ export default function Navbar() {
           <option value="fun">Comédia</option>
           <option value="action">Ação</option>
         </select>
-        <div className="mr-4 md:w-2/5  bg-neutral-800 text-sm flex flex-row rounded-2xl px-4 flex items-center">
+        <div className="mr-4 md:w-2/5  bg-neutral-800 text-sm flex flex-row rounded-full px-4 items-center">
           <input
             type="text"
             name="search"
@@ -62,15 +62,15 @@ export default function Navbar() {
           <i className="ri-search-line text-lg" onClick={handlerImageClick}></i>
         </div>
 
-        <div className="flex-row items-center bg-neutral-800 p-1 px-4 rounded-full gap-2 hidden md:flex">
+        <div className="flex-row items-center p-1 px-4 rounded-full gap-2 hidden md:flex">
           <img
-            src="/file.svg"
+            src="/globe.svg"
             alt="user icon"
             width={40}
             className="rounded-2xl"
           />
 
-          <p className="text-neutral-300 text-sm hidden md:block">
+          <p className="text-neutral-300 text-sm font-medium hidden md:block">
             UserAccount
           </p>
         </div>
