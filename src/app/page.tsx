@@ -5,7 +5,7 @@ export default function Home() {
     <>
       <div className="flex ">
         <Sidebar />
-        <main className="ml-6 w-full">
+        <main className="md:ml-6 w-full">
           <Navbar />
         </main>
       </div>

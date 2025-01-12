@@ -8,10 +8,13 @@ interface SideItemProps {
 export default function SideItem({ name, path }: SideItemProps) {
   return (
     <>
-      <a className="flex flex-row items-center gap-2 mx-2 w-full" href="#">
-        <i className={`${path} text-xl`} />
+      <a
+        className="flex flex-row items-center gap-2 w-full justify-center md:justify-start"
+        href="#"
+      >
+        <i className={`${path} text-xl md:bg-transparent`} />
 
-        <p className="text-neutral-300 text-base text-ellipsis overflow-hidden">
+        <p className="text-neutral-300 text-base text-ellipsis overflow-hidden hidden md:block">
           {name}
         </p>
       </a>

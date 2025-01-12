@@ -2,12 +2,12 @@ import Image from "next/image";
 import SideItem from "./sideItem";
 export default function Sidebar() {
   return (
-    <aside className="w-48 mx-8 my-8 bg-neutral-800 rounded-3xl p-4 flex flex-col">
+    <aside className="w-1/12 min-w-16 ml-4 md:ml-8 my-8 bg-neutral-800 rounded-3xl p-4 flex flex-col items-center sm:w-fit">
       <Image
         src={"/mcpflix_logo.svg"}
         alt="logo_mcpflix"
-        width={150}
-        height={150}
+        width={100}
+        height={100}
       />
 
       <div className="w-full flex flex-col gap-6">
