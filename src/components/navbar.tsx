@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import React, { useRef, useState } from "react";
 
 export default function Navbar() {
@@ -39,7 +40,7 @@ export default function Navbar() {
         <select
           name="genrer"
           id="genrer"
-          className="appearance-auto rounded-full flex items-center text-center  bg-neutral-800 focus:outline-none text-xs md:text-sm"
+          className="appearance-auto rounded-3xl flex items-center text-center  bg-neutral-800 focus:outline-none text-xs md:text-sm"
           defaultValue={"all"}
         >
           <option value="all">Todos</option>
@@ -47,7 +48,7 @@ export default function Navbar() {
           <option value="fun">Comédia</option>
           <option value="action">Ação</option>
         </select>
-        <div className="mr-4 md:w-2/5  bg-neutral-800 text-sm flex flex-row rounded-full px-4 items-center">
+        <div className="mr-4 md:w-2/5  bg-neutral-800 text-sm flex flex-row rounded-3xl px-4 items-center">
           <input
             type="text"
             name="search"
@@ -62,12 +63,13 @@ export default function Navbar() {
           <i className="ri-search-line text-lg" onClick={handlerImageClick}></i>
         </div>
 
-        <div className="flex-row items-center p-1 px-4 rounded-full gap-2 hidden md:flex">
-          <img
+        <div className="flex-row items-center p-1 px-4 rounded-3xl gap-2 hidden md:flex">
+          <Image
             src="/globe.svg"
             alt="user icon"
             width={40}
-            className="rounded-2xl"
+            height={40}
+            className="rounded-3xl"
           />
 
           <p className="text-neutral-300 text-sm font-medium hidden md:block">
