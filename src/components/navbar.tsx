@@ -37,18 +37,7 @@ export default function Navbar() {
             {searchValue}
           </div>
         )}
-        <select
-          name="genrer"
-          id="genrer"
-          className="appearance-auto rounded-3xl flex items-center text-center  bg-neutral-800 focus:outline-none text-xs md:text-sm"
-          defaultValue={"all"}
-        >
-          <option value="all">Todos</option>
-          <option value="terror">Terror</option>
-          <option value="fun">Comédia</option>
-          <option value="action">Ação</option>
-        </select>
-        <div className="mr-4 md:w-2/5  bg-neutral-800 text-sm flex flex-row rounded-3xl px-4 items-center">
+        <div className="mr-4 w-full justify-center md:w-2/5  bg-neutral-800 text-sm flex flex-row rounded-3xl px-4 items-center">
           <input
             type="text"
             name="search"

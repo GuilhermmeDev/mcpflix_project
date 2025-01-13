@@ -12,14 +12,18 @@ export default function Sidebar() {
       />
 
       <div className="w-full flex md:flex-col gap-6 flex-row">
-        <SideItem name={"Home"} path={"ri-home-5-line"} />
+        <SideItem name={"Home"} pathIcon={"ri-home-5-line"} path="/" />
 
-        <SideItem name={"Favoritos"} path={"ri-heart-3-line"} />
+        <SideItem name={"Favoritos"} pathIcon={"ri-heart-3-line"} path="/fav" />
 
         <hr className="border-neutral-600 mx-2 hidden md:block" />
 
-        <SideItem name={"Perfil"} path={"ri-user-3-line"} />
-        <SideItem name={"Configurações"} path={"ri-settings-4-line"} />
+        <SideItem name={"Perfil"} pathIcon={"ri-user-3-line"} path="/profile" />
+        <SideItem
+          name={"Configurações"}
+          pathIcon={"ri-settings-4-line"}
+          path="/config"
+        />
       </div>
     </aside>
   );

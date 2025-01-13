@@ -2,16 +2,19 @@ import PropTypes from "prop-types";
 
 interface SideItemProps {
   name: string;
+  pathIcon: string;
   path: string;
 }
-export default function SideItem({ name, path }: SideItemProps) {
+export default function SideItem({ name, pathIcon, path }: SideItemProps) {
   return (
     <>
       <a
         className="flex flex-row items-center gap-2 w-full justify-center md:justify-start"
-        href="#"
+        href={path}
       >
-        <i className={`${path} text-xl md:bg-transparent text-neutral-300`} />
+        <i
+          className={`${pathIcon} text-xl md:bg-transparent text-neutral-300`}
+        />
 
         <p
           className={`text-base text-ellipsis overflow-hidden hidden md:block`}
