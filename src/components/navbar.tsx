@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import React, { useRef, useState } from "react";
 
 export default function Navbar() {
@@ -50,20 +49,6 @@ export default function Navbar() {
           />
 
           <i className="ri-search-line text-lg" onClick={handlerImageClick}></i>
-        </div>
-
-        <div className="flex-row items-center p-1 px-4 rounded-3xl gap-2 hidden md:flex">
-          <Image
-            src="/globe.svg"
-            alt="user icon"
-            width={40}
-            height={40}
-            className="rounded-3xl"
-          />
-
-          <p className="text-neutral-300 text-sm font-medium hidden md:block">
-            UserAccount
-          </p>
         </div>
       </nav>
     </>
