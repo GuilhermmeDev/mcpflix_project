@@ -2,6 +2,7 @@
 import { supabase } from "@/lib/supabaseClient";
 import React, { useState } from "react";
 import Auth from "@/components/auth";
+import { AuthError } from "@supabase/supabase-js";
 
 export default function Register() {
   const [email, setEmail] = useState<string>("");
@@ -9,6 +10,10 @@ export default function Register() {
   const [password, setPassw] = useState<string>("");
 
   const [name, setName] = useState<string>("");
+
+  const [error, setError] = useState<string>("");
+
+  const [success, setSuccess] = useState<boolean>(false);
 
   const handlerRegister = async (e) => {
     e.preventDefault();
@@ -25,8 +30,10 @@ export default function Register() {
 
       if (error) {
         console.error(error);
+        setError("Alguma coisa deu errado :(");
       } else {
         console.info("usuario registrado:", data);
+        setSuccess(true);
       }
     }
   };
@@ -38,6 +45,8 @@ export default function Register() {
         setPassw={setPassw}
         setName={setName}
         handler={handlerRegister}
+        error={error}
+        success={success}
       />
     </>
   );

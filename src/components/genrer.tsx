@@ -5,13 +5,14 @@ import { useEffect, useState } from "react";
 export default function GenrerOption({
   onSelectGenre,
 }: {
-  onSelectGenre: (genre: string | null) => void;
+  onSelectGenre: (genre: string | null) => void; // estado que é compartilhado pela pagina pai
 }) {
   const [genrer, setGenrer] = useState<string[]>([]);
   const [selectedGenrer, setSelectedGenrer] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchGenrers = async () => {
+      // requisição que retorna todos os generos de filmes do BD
       const { data, error } = await supabase.from("category").select("*");
 
       if (error) {
@@ -29,12 +30,13 @@ export default function GenrerOption({
     if (newSelectedGenrer === null) {
       onSelectGenre(null);
     } else {
-      onSelectGenre(genrer.id);
+      onSelectGenre(genrer.id); // id do genero selecionado será passado para a pagina pai para o filtro de filmes por genero
     }
     setSelectedGenrer(newSelectedGenrer);
   };
 
   return (
+    // mostra todos os generos que estão cadastrados no BD dinamicamente
     <>
       {genrer.map((genrer) => (
         <button

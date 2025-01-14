@@ -12,7 +12,7 @@ interface Props {
 export default function pageMovie({ params }: Props) {
   const [movie, setMovie] = useState<any | null>(null);
 
-  const { id } = React.use(params);
+  const { id } = React.use(params); // resgata o id do filme que está na URL (movie/id)
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -20,7 +20,7 @@ export default function pageMovie({ params }: Props) {
         .from("movies")
         .select("*, category:category_id(name)")
         .eq("id", id)
-        .single();
+        .single(); // retorna APENAS um filme que foi encontrado com tais condições
 
       if (error) {
         console.error(error);
@@ -32,7 +32,7 @@ export default function pageMovie({ params }: Props) {
   }, [id]);
 
   if (!movie) {
-    return <p>carregando filme</p>;
+    return <p>carregando filme</p>; // mensagem que aparece enquanto se espera a requisição
   }
 
   return (

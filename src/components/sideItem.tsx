@@ -6,6 +6,7 @@ interface SideItemProps {
   path: string;
 }
 export default function SideItem({ name, pathIcon, path }: SideItemProps) {
+  // componente que cria cada elemento na barra de navegação
   return (
     <>
       <a
