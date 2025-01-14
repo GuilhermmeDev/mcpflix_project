@@ -1,6 +1,5 @@
 export default function VideoPlayer() {
-  const embedUrl =
-    "https://drive.google.com/file/d/1BzjUa8qBc_H0dDdb7sm2NkloT9hCb0tu/preview"; // https://drive.google.com/file/FILE_ID/preview
+  const embedUrl = ""; // https://drive.google.com/file/FILE_ID/preview
   return (
     <>
       <div className="video-player">

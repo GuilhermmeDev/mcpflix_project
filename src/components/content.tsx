@@ -5,7 +5,11 @@ import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabaseClient";
 import Link from "next/link";
 
-export default function Content() {
+interface ContentProps {
+  searchValue: string;
+}
+
+export default function Content({ searchValue }: ContentProps) {
   const [filmes, setFilmes] = useState<any[]>([]);
 
   const [selectedGenre, setSelectedGenre] = useState<string | null>(null);
@@ -20,6 +24,10 @@ export default function Content() {
         query.eq("category_id", selectedGenre);
       }
 
+      if (searchValue.length > 0) {
+        query.ilike("title", `%${searchValue}%`);
+      }
+
       const { data, error } = await query;
 
       if (error) {
@@ -29,7 +37,7 @@ export default function Content() {
       }
     };
     fetchFilmes();
-  }, [selectedGenre]);
+  }, [selectedGenre, searchValue]);
 
   const handleGenreSelect = (genre: string | null) => {
     setSelectedGenre(genre);

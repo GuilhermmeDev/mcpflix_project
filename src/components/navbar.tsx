@@ -2,7 +2,11 @@
 
 import React, { useRef, useState } from "react";
 
-export default function Navbar() {
+interface NavbarProps {
+  onSearch: (value: string) => void;
+}
+
+export default function Navbar({ onSearch }: NavbarProps) {
   const InputRef = useRef<HTMLInputElement>(null);
 
   const handlerImageClick = () => {
@@ -15,6 +19,9 @@ export default function Navbar() {
   const handlerInputChanger = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
     setIsTyping(e.target.value.length > 0);
+    setTimeout(() => {
+      onSearch(e.target.value);
+    }, 500);
   };
 
   const handlerInputExit = () => {
