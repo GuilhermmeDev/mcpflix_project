@@ -47,11 +47,11 @@ export default function Content({ searchValue }: ContentProps) {
     <article className="ml-4 md:ml-0">
       <p className="font-medium text-lg">Recentes</p>
       <GenrerOption onSelectGenre={handleGenreSelect} />
-      <ul className="flex flex-row">
+      <ul className="flex flex-row overflow-x-auto">
         {filmes.map((filme) => (
           <li
             key={filme.id}
-            className="bg-neutral-800 rounded-2xl flex flex-col items-left justify-center p-4 mr-8 gap-2"
+            className="bg-neutral-800 rounded-2xl flex flex-col items-left justify-center p-4 mr-8 gap-2 min-w-40"
           >
             <Link href={`/movie/${filme.id}`} passHref>
               <img

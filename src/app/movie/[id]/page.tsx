@@ -45,7 +45,7 @@ export default function pageMovie({ params }: Props) {
           <p className="font-medium text-2xl">Descrição</p>
           <p className="font-sans">{movie.synopsis}</p>
         </div>
-        <div className="w-1/4 grid grid-cols-4">
+        <div className="w-full md:w-1/4 grid grid-cols-3 md:grid-cols-4">
           <MovieInfo label="Duração" movieContent={movie.duration} />
           <MovieInfo
             label="Data de Lançamento"
