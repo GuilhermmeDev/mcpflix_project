@@ -25,16 +25,14 @@ export default function Auth({
 }: AuthProps) {
   const router = useRouter(); // até a linha 39 garante que um usuario logado não acesse as telas de login e registro
 
-  useEffect(() => {
-    const checkAuth = async () => {
-      const { data } = await supabase.auth.getUser();
+  const checkAuth = async () => {
+    const { data } = await supabase.auth.getUser();
 
-      if (data.user) {
-        router.push("/");
-      }
-    };
-    checkAuth();
-  });
+    if (data.user) {
+      router.push("/");
+    }
+  };
+  checkAuth();
 
   return (
     <>

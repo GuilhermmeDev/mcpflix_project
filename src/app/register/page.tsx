@@ -2,7 +2,6 @@
 import { supabase } from "@/lib/supabaseClient";
 import React, { useState } from "react";
 import Auth from "@/components/auth";
-import { AuthError } from "@supabase/supabase-js";
 
 export default function Register() {
   const [email, setEmail] = useState<string>("");
@@ -18,12 +17,13 @@ export default function Register() {
   const handlerRegister = async (e) => {
     e.preventDefault();
     if (email.length > 0 && password.length > 0) {
-      const { data, error } = await supabase.auth.signUp({
+      const { error } = await supabase.auth.signUp({
         email,
         password,
         options: {
           data: {
             name,
+            favs: [],
           },
         },
       });
@@ -32,7 +32,6 @@ export default function Register() {
         console.error(error);
         setError("Alguma coisa deu errado :(");
       } else {
-        console.info("usuario registrado:", data);
         setSuccess(true);
       }
     }

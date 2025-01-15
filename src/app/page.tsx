@@ -2,21 +2,11 @@
 import Sidebar from "@/components/sidebar";
 import Navbar from "@/components/navbar";
 import Content from "@/components/content";
-import { useEffect, useState } from "react";
-import { supabase } from "@/lib/supabaseClient";
-import { useRouter } from "next/navigation";
-import { AuthSessionMissingError } from "@supabase/supabase-js";
+import { useState } from "react";
+import CheckAuth from "@/auth/checkAuth";
+
 export default function Home() {
-  const router = useRouter();
-  useEffect(() => {
-    async function checkLogin() {
-      const { error } = await supabase.auth.getUser(); // garante que o usuario só acesse a essa pagina se estiver logado
-      if (error<AuthSessionMissingError>) {
-        router.push("/login"); // caso o contrario, será mandado para a pagina de login
-      }
-    }
-    checkLogin();
-  });
+  CheckAuth();
 
   const [searchValue, setSearchValue] = useState("");
 

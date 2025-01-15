@@ -5,11 +5,15 @@ import { useEffect, useState } from "react";
 import VideoPlayer from "./videoPlayer";
 import MovieInfo from "@/components/movieInfo";
 import TopBar from "@/components/topBar";
+import Fav from "./fav";
+import CheckAuth from "@/auth/checkAuth";
 interface Props {
   params: { id: string };
 }
 
 export default function pageMovie({ params }: Props) {
+  CheckAuth();
+
   const [movie, setMovie] = useState<any | null>(null);
 
   const { id } = React.use(params); // resgata o id do filme que está na URL (movie/id)
@@ -40,12 +44,15 @@ export default function pageMovie({ params }: Props) {
       <TopBar movieTitle={movie.title} />
       <VideoPlayer />
       <div className="mt-6 flex flex-col gap-6 mx-8">
-        <p className="font-medium text-3xl">{movie.title}</p>
+        <div className="flex flex-row justify-between">
+          <p className="font-medium text-3xl">{movie.title}</p>
+          <Fav movieId={movie.id} />
+        </div>
         <div className="flex flex-col gap-2">
           <p className="font-medium text-2xl">Descrição</p>
           <p className="font-sans">{movie.synopsis}</p>
         </div>
-        <div className="w-full md:w-1/4 grid grid-cols-3 md:grid-cols-4">
+        <div className="w-full md:w-1/4 grid grid-cols-3">
           <MovieInfo label="Duração" movieContent={movie.duration} />
           <MovieInfo
             label="Data de Lançamento"
