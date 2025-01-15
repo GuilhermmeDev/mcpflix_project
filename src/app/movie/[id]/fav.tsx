@@ -11,29 +11,51 @@ export default function Fav({ movieId }: FavProps) {
   const [fav, setFav] = useState<boolean>(false);
 
   useEffect(() => {
-    const changeFav = async () => {
+    // verifica se o filme ja foi favoritado pelo usuario anteriormente
+    const fetchUserFavs = async () => {
       const { data } = await supabase.auth.getUser();
 
       if (data.user) {
         const userFavs = data.user.user_metadata.favs;
-        if (fav) {
-          userFavs.push(movieId);
-        } else {
-          userFavs.pop();
-        }
-
-        console.log(userFavs);
+        const isFav = userFavs.includes(movieId);
+        setFav(isFav);
       }
     };
-    changeFav();
-  });
+    fetchUserFavs();
+  }, [movieId]);
+
+  const handleFavClick = async () => {
+    const { data } = await supabase.auth.getUser();
+
+    if (data.user) {
+      let userFavs = data.user.user_metadata.favs;
+
+      if (fav) {
+        userFavs = userFavs.filter((id: number) => id !== movieId); // remove o id do filme do array
+      } else {
+        // add o id do filme no array
+        userFavs.push(movieId);
+      }
+
+      // muda os metadados com o supabase
+      const { error } = await supabase.auth.updateUser({
+        data: { favs: userFavs },
+      });
+
+      if (error) {
+        console.error(error.message);
+      } else {
+        setFav(!fav); // se era favoritado agora não é mais, e se não era agora é :) kkk
+      }
+    }
+  };
   return (
     <>
       <i
         className={`${
           fav ? "ri-heart-3-fill text-green-400" : "ri-heart-3-line text-white"
         } text-3xl`}
-        onClick={() => (fav ? setFav(false) : setFav(true))}
+        onClick={handleFavClick}
       ></i>
     </>
   );
