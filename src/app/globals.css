@@ -19,3 +19,7 @@ body {
   background: var(--background);
   font-family: "Poppins", Arial, sans-serif;
 }
+
+body::-webkit-scrollbar-track {
+  background: orange; /* color of the tracking area */
+}
