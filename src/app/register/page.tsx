@@ -22,12 +22,10 @@ export default function Register() {
         password,
         options: {
           data: {
-            name,
             favs: [],
           },
         },
       });
-
       if (error) {
         console.error(error);
         setError("Alguma coisa deu errado :(");

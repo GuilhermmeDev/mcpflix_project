@@ -10,6 +10,11 @@ interface FavProps {
 export default function Fav({ movieId }: FavProps) {
   const [fav, setFav] = useState<boolean>(false);
 
+  const addMovieFav = (userFavs: number[]) => {
+    const isFav = userFavs.includes(movieId);
+    setFav(isFav);
+  };
+
   useEffect(() => {
     // verifica se o filme ja foi favoritado pelo usuario anteriormente
     const fetchUserFavs = async () => {
@@ -17,8 +22,21 @@ export default function Fav({ movieId }: FavProps) {
 
       if (data.user) {
         const userFavs = data.user.user_metadata.favs;
-        const isFav = userFavs.includes(movieId);
-        setFav(isFav);
+        if (userFavs) {
+          addMovieFav(userFavs);
+        } else {
+          const { data: session } = await supabase.auth.getSession();
+
+          if (session) {
+            const { data } = await supabase.auth.updateUser({
+              // garante que há a seção de favoritos nos metadados do user
+              data: {
+                favs: [],
+              },
+            });
+            addMovieFav(data.user.user_metadata.favs);
+          }
+        }
       }
     };
     fetchUserFavs();
