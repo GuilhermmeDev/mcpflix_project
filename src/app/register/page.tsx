@@ -17,7 +17,7 @@ export default function Register() {
   const handlerRegister = async (e) => {
     e.preventDefault();
     if (email.length > 0 && password.length > 0) {
-      const { error } = await supabase.auth.signUp({
+      const { data, error } = await supabase.auth.signUp({
         email,
         password,
         options: {
@@ -26,6 +26,14 @@ export default function Register() {
           },
         },
       });
+
+      if (data) {
+        await supabase.auth.updateUser({
+          data: {
+            display_name: name,
+          },
+        });
+      }
       if (error) {
         console.error(error);
         setError("Alguma coisa deu errado :(");
