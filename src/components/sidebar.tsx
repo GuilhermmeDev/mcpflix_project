@@ -19,12 +19,6 @@ export default function Sidebar() {
 
         <hr className="border-neutral-600 mx-2 hidden md:block" />
 
-        <SideItem name={"Perfil"} pathIcon={"ri-user-3-line"} path="/profile" />
-        <SideItem
-          name={"Configurações"}
-          pathIcon={"ri-settings-4-line"}
-          path="/config"
-        />
       </div>
     </aside>
   );
