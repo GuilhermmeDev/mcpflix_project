@@ -14,7 +14,6 @@ export default function FavPage() {
 
       if (data.user) {
         const userFavs: number[] = data.user.user_metadata.favs;
-        console.log(userFavs);
         if (userFavs.length > 0) {
           const { data, error } = await supabase
             .from("movies")

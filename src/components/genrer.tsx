@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 export default function GenrerOption({
   onSelectGenre,
 }: {
-  onSelectGenre: (genre: string | null) => void; // estado que é compartilhado pela pagina pai
+  onSelectGenre: (genre: number | null) => void; // estado que é compartilhado pela pagina pai
 }) {
   const [genrer, setGenrer] = useState<string[]>([]);
   const [selectedGenrer, setSelectedGenrer] = useState<string | null>(null);
@@ -24,7 +24,7 @@ export default function GenrerOption({
     fetchGenrers();
   }, []);
 
-  const handleButtonClick = (genrer: string) => {
+  const handleButtonClick = (genrer: { name: string; id: number }) => {
     const newSelectedGenrer =
       selectedGenrer === genrer.name ? null : genrer.name;
     if (newSelectedGenrer === null) {
