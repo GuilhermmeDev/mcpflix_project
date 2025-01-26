@@ -1,7 +1,8 @@
 "use client";
 
-import CheckAuth from "@/auth/checkAuth";
+import useCheckAuth from "@/auth/checkAuth";
 import { supabase } from "@/lib/supabaseClient";
+import { useRouter } from "next/navigation";
 import React, { useRef, useState } from "react";
 
 interface NavbarProps {
@@ -9,6 +10,7 @@ interface NavbarProps {
 }
 
 export default function Navbar({ onSearch }: NavbarProps) {
+  const router = useRouter();
   const InputRef = useRef<HTMLInputElement>(null);
 
   const handlerImageClick = () => {
@@ -38,7 +40,7 @@ export default function Navbar({ onSearch }: NavbarProps) {
     if (error) {
       console.log(error);
     } else {
-      CheckAuth();
+      router.push("/login");
     }
   };
 
