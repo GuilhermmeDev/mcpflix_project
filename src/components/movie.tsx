@@ -19,7 +19,7 @@ export default function Movie({ filme }: movieProps) {
         width={150}
         className="rounded-2xl py-1 h-56"
       />
-      <p className="bg-neutral-700 p-2 rounded-3xl text-xs w-fit">
+      <p className="bg-neutral-700 p-2 rounded-2xl text-xs w-fit">
         {filme.category?.name}
       </p>
       <div className="flex flex-row items-center justify-between w-full">

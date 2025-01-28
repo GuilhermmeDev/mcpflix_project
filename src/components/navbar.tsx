@@ -79,16 +79,16 @@ export default function Navbar({ onSearch }: NavbarProps) {
         >
           <i className="ri-arrow-drop-down-line" />
         </div>
-
-        <button
-          className={`${
-            isLogout ? "relative" : "hidden"
-          } bg-neutral-800 rounded-xl p-2 flex flex-row justify-center items-center gap-2`}
-          onClick={handleLogout}
-        >
-          <i className="ri-logout-box-r-line text-red-400" />
-          <p className="text-red-400">Logout</p>
-        </button>
+        
+        <div className={`${isLogout ? "relative" : "hidden"}`}>
+          <button
+            className={`flex items-center gap-2 bg-red-600 hover:bg-red-500 transition duration-300 ease-in-out rounded-lg p-2 text-white`}
+            onClick={handleLogout}
+          >
+            <i className="ri-logout-box-r-line" />
+            <span className="font-semibold">Logout</span>
+          </button>
+        </div>
       </nav>
     </>
   );
