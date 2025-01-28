@@ -2,6 +2,8 @@
 import { supabase } from "@/lib/supabaseClient";
 import React, { useState } from "react";
 import Auth from "@/components/auth";
+import { emailSchema } from "@/lib/auth";
+import { z } from "zod";
 
 export default function Register() {
   const [email, setEmail] = useState<string>("");
@@ -14,8 +16,11 @@ export default function Register() {
 
   const [success, setSuccess] = useState<boolean>(false);
 
-  const handlerRegister = async (e) => {
+  const handlerRegister = async (e : React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
+
+    validateEmail(email);
+
     if (email.length > 0 && password.length > 0) {
       const { data, error } = await supabase.auth.signUp({
         email,
@@ -39,6 +44,21 @@ export default function Register() {
         setError("Alguma coisa deu errado :(");
       } else {
         setSuccess(true);
+      }
+    }
+  };
+
+
+  const validateEmail = (email : string) => {
+    try {
+      emailSchema.parse({ email });
+      setEmail(email);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        // Aqui você pode tratar o erro como preferir
+        setEmail("");
+        // Se você tiver uma função para mostrar erros, pode usá-la aqui
+        setError(error.errors[0].message);
       }
     }
   };
