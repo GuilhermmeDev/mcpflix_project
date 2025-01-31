@@ -50,7 +50,7 @@ export default function pageMovie({ params }: Props) {
         </div>
         <div className="flex flex-col gap-2">
           <p className="font-medium text-2xl">Descrição</p>
-          <p className="font-sans">{movie.synopsis}</p>
+          <p >{movie.synopsis}</p>
         </div>
         <div className="w-full md:w-1/4 grid grid-cols-3">
           <MovieInfo label="Duração" movieContent={movie.duration} />
