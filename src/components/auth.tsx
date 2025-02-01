@@ -53,7 +53,7 @@ export default function Auth({
           </div>
         </div>
       )}
-      <div className="flex flex-col w-full h-full justify-center items-center">
+      <div className="flex flex-col flex-grow min-h-full justify-center items-center">
         <div className="bg-neutral-800 p-6 rounded-3xl">
           <form onSubmit={handler} className="flex flex-col gap-4 w-fit ">
             <div className="flex flex-col w-full items-center justify-center gap-3">
