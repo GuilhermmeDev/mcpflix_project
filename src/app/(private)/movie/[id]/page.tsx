@@ -6,16 +6,17 @@ import VideoPlayer from "./videoPlayer";
 import MovieInfo from "@/components/movieInfo";
 import TopBar from "@/components/topBar";
 import Fav from "./fav";
-import CheckAuth from "@/auth/checkAuth";
+import useAuth from "@/auth/checkAuth";
+import Page404 from "@/components/404";
 interface Props {
   params: { id: string };
 }
 
 export default function pageMovie({ params }: Props) {
-  CheckAuth();
+  useAuth();
 
   const [movie, setMovie] = useState<any | null>(null);
-
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const { id } = React.use(params); // resgata o id do filme que está na URL (movie/id)
 
   useEffect(() => {
@@ -28,6 +29,8 @@ export default function pageMovie({ params }: Props) {
 
       if (error) {
         console.error(error);
+        setErrorMessage("Filme não encontrado");
+
       } else {
         setMovie(data ? data : null);
       }
@@ -35,8 +38,15 @@ export default function pageMovie({ params }: Props) {
     fetchMovie();
   }, [id]);
 
+  if (errorMessage) {
+    return <Page404 error={errorMessage} />;
+  }
+
   if (!movie) {
-    return <p>carregando filme</p>; // mensagem que aparece enquanto se espera a requisição
+    return (
+    <div className="flex items-center justify-center h-screen">
+      <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-green-400"></div>
+    </div>) // animação que aparece enquanto se espera a requisição
   }
 
   return (

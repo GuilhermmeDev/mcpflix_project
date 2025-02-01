@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { supabase } from "@/lib/supabaseClient";
-import { useRouter } from "next/navigation";
+import useAuth from "@/auth/checkAuth";
 
 interface AuthProps {
   handler: any;
@@ -22,16 +22,8 @@ export default function Auth({
   error,
   success,
 }: AuthProps) {
-  const router = useRouter(); // até a linha 39 garante que um usuario logado não acesse as telas de login e registro
 
-  const checkAuth = async () => {
-    const { data } = await supabase.auth.getUser();
-
-    if (data.user) {
-      router.push("/");
-    }
-  };
-  checkAuth();
+  useAuth();
 
   const handleGoogleAuth = async () => {
     await supabase.auth.signInWithOAuth({

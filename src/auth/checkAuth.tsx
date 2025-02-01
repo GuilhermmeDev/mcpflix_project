@@ -1,19 +1,32 @@
 import { supabase } from "@/lib/supabaseClient";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { useEffect } from "react";
 
-export default function useCheckAuth() {
+const publicRoutes = ["/login", "/register", "/landing"]; // Defina suas rotas públicas aqui
+
+const useAuth = () => {
   const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
-    const checkLogin = async () => {
-      const { data: user, error } = await supabase.auth.getUser(); // Verifica o usuário logado
+    const checkAuth = async () => {
+      const { data } = await supabase.auth.getUser();
 
-      if (!user || error) {
-        router.push("/login"); // Redireciona para a página de login se o usuário não estiver logado
+      if (data.user) {
+        // Se o usuário estiver autenticado e em uma rota pública, redirecione para "/"
+        if (publicRoutes.includes(pathname)) {
+          router.replace("/");
+        }
+      } else {
+        // Se o usuário não estiver autenticado e estiver em uma rota privada, redirecione para a página de login
+        if (!publicRoutes.includes(pathname)) {
+          router.replace("/login");
+        }
       }
     };
 
-    checkLogin();
-  }, [router]); // Executa quando o componente monta
-}
+    checkAuth();
+  }, [router, pathname]);
+};
+
+export default useAuth;

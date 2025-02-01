@@ -5,7 +5,7 @@ import Auth from "@/components/auth";
 import { AuthApiError } from "@supabase/supabase-js";
 import { useRouter } from "next/navigation";
 
-export default function Register() {
+export default function Login() {
   const [email, setEmail] = useState<string>("");
 
   const [password, setPassw] = useState<string>("");

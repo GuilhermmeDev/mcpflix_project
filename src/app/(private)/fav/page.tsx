@@ -4,8 +4,9 @@ import { supabase } from "@/lib/supabaseClient";
 import { useEffect, useState } from "react";
 import Movie from "@/components/movie";
 import TopBar from "@/components/topBar";
-
+import useAuth from "@/auth/checkAuth";
 export default function FavPage() {
+  useAuth();
   const [movies, setMovies] = useState<any[]>([]);
 
   useEffect(() => {
