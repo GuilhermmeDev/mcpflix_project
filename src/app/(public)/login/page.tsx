@@ -26,7 +26,7 @@ export default function Login() {
         console.error(error);
         setError("Seu email e/ou senha estão incorretos");
       } else {
-        router.push("/"); // redireciona o usuario se o login for bem sucedido
+        router.push("/dashboard"); // redireciona o usuario se o login for bem sucedido
       }
     }
   };

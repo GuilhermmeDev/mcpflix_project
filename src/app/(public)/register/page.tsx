@@ -2,10 +2,12 @@
 import { supabase } from "@/lib/supabaseClient";
 import React, { useState } from "react";
 import Auth from "@/components/auth";
-import { emailSchema } from "@/lib/auth";
+import { emailSchema } from "@/lib/validateEmail";
 import { z } from "zod";
+import { useRouter } from "next/navigation";
 
 export default function Register() {
+  const router = useRouter();
   const [email, setEmail] = useState<string>("");
 
   const [password, setPassw] = useState<string>("");
@@ -19,9 +21,9 @@ export default function Register() {
   const handlerRegister = async (e : React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
-    validateEmail(email);
+    const isValid = validateEmail(email);
 
-    if (email.length > 0 && password.length > 0) {
+    if (email.length > 0 && password.length > 0 && isValid) {
       const { data, error } = await supabase.auth.signUp({
         email,
         password,
@@ -43,7 +45,7 @@ export default function Register() {
         console.error(error);
         setError("Alguma coisa deu errado :(");
       } else {
-        setSuccess(true);
+        router.push("/dashboard");
       }
     }
   };
@@ -59,8 +61,10 @@ export default function Register() {
         setEmail("");
         // Se você tiver uma função para mostrar erros, pode usá-la aqui
         setError(error.errors[0].message);
+        return false;
       }
     }
+    return true;
   };
 
   return (

@@ -3,8 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { TypeAnimation } from "react-type-animation";
 import { motion } from "framer-motion";
-
+import useAuth from "@/auth/checkAuth";
 export default function Landing() {
+    useAuth();
     return (
         <div className="flex flex-col items-center w-full mb-48">
             <div className="flex flex-row items-center justify-between w-5/6 bg-neutral-800 m-8 p-4 rounded-lg">
