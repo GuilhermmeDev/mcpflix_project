@@ -1,10 +1,10 @@
 "use client";
 
-import useCheckAuth from "@/auth/checkAuth";
+
 import { supabase } from "@/lib/supabaseClient";
 import { useRouter } from "next/navigation";
-import React, { useRef, useState } from "react";
-
+import React, { useRef, useState, useEffect } from "react";
+import Image from "next/image";
 interface NavbarProps {
   onSearch: (value: string) => void;
 }
@@ -12,7 +12,7 @@ interface NavbarProps {
 export default function Navbar({ onSearch }: NavbarProps) {
   const router = useRouter();
   const InputRef = useRef<HTMLInputElement>(null);
-
+  const [user, setUser] = useState<any>(null);
   const handlerImageClick = () => {
     InputRef.current?.focus(); // garante que ao clicar na imagem da lupa, está clicando também no input
   };
@@ -41,6 +41,18 @@ export default function Navbar({ onSearch }: NavbarProps) {
       console.log(error);
     } else {
       router.push("/login");
+    }
+  };
+  useEffect(() => {
+    handleGetUserAvatar();
+  }, []);
+  const handleGetUserAvatar = async () => {
+    const { data, error } = await supabase.auth.getUser();
+    if (error) {
+      console.log(error);
+    } else {
+      console.log(data.user.user_metadata.avatar_url);
+      setUser(data.user.user_metadata.avatar_url);
     }
   };
 
@@ -74,10 +86,11 @@ export default function Navbar({ onSearch }: NavbarProps) {
           <i className="ri-search-line text-lg" onClick={handlerImageClick}></i>
         </div>
         <div
-          className="p-2 bg-neutral-800 rounded-xl h-fit"
+          className="h-fit"
           onClick={() => setLogout(!isLogout)}
         >
-          <i className="ri-arrow-drop-down-line" />
+          {user && (<Image src={user} alt="avatar" width={40} height={40} className="rounded-full" />)}
+          {!user && (<i className="p-4 bg-neutral-800 rounded-2xl ri-user-line text-lg" />)}
         </div>
         
         <div className={`${isLogout ? "relative" : "hidden"}`}>

@@ -3,7 +3,7 @@ import SideItem from "./sideItem";
 export default function Sidebar() {
   return (
     // tag aside é responsiva e toma diferentes comportamentos dependendo da resolução da tela
-    <aside className="md:max-h-full md:sticky md:top-1/4 max-h-24 w-fit min-w-16 md:ml-8 my-4 md:my-8 bg-neutral-800 rounded-3xl p-4 flex md:flex-col items-center sm:w-fit flex-row fixed bottom-2">
+    <aside className="md:max-h-fit md:sticky md:top-1/6 max-h-24 w-fit min-w-16 md:ml-8 my-4 md:my-8 bg-neutral-800 rounded-3xl p-4 flex md:flex-col items-center sm:w-fit flex-row fixed bottom-2 z-10">
       <Image
         src={"/logo_mcpflix.svg"}
         alt="logo_mcpflix"
