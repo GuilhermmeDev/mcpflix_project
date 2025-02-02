@@ -1,6 +1,5 @@
 "use client";
 
-import GenrerOption from "./genrer";
 import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabaseClient";
 import Movie from "./movie";
@@ -11,57 +10,67 @@ interface ContentProps {
 
 export default function Content({ searchValue }: ContentProps) {
   const [filmes, setFilmes] = useState<any[]>([]);
-
-  const [selectedGenre, setSelectedGenre] = useState<string | null>(null);
+  const [genres, setGenres] = useState<any[]>([]);
 
   useEffect(() => {
-    const fetchFilmes = async () => {
-      const query = supabase
+    const fetchData = async () => {
+      // Busca os filmes e os gêneros
+      const { data: filmesData, error: filmesError } = await supabase
         .from("movies")
-        .select("*, category:category_id(name)"); // seleciona todos os filmes, pegando também os nomes de associados a chave estrangeira dos generos
+        .select("*, category:category_id(name)");
 
-      if (selectedGenre !== null) {
-        query.eq("category_id", selectedGenre); // se há algum genero selecionado, filtrar filmes pelo genero escolhido
+      if (filmesError) {
+        console.error(filmesError);
+        return;
       }
 
-      if (searchValue.length > 0) {
-        // se existir algum caractere no input de pesquisa, filtra os filmes
-        query.ilike("title", `%${searchValue}%`);
+      setFilmes(filmesData);
+
+      // Busca todos os gêneros
+      const { data: genresData, error: genresError } = await supabase
+        .from("category")
+        .select("*");
+
+      if (genresError) {
+        console.error(genresError);
+        return;
       }
 
-      const { data, error } = await query;
-
-      if (error) {
-        console.error(error);
-      } else {
-        setFilmes(data);
-      }
+      setGenres(genresData); // Armazena os gêneros
     };
-    fetchFilmes();
-  }, [selectedGenre, searchValue]); // qualquer mudança em um desses estados, refazer as funções dentro useEffects
 
-  const handleGenreSelect = (genre: string | null) => {
-    setSelectedGenre(genre);
-  };
+    fetchData();
+  }, [searchValue]);
+
 
   return (
     <article className="ml-4 md:ml-0">
-      <p className="font-medium text-lg">Recentes</p>
-      <GenrerOption onSelectGenre={handleGenreSelect} />
+      <p className="font-medium text-lg">Talvez você goste</p>
       <ul className="flex flex-row overflow-x-auto">
-        {filmes.map(
-          (
-            filme // mostra cada filme encontrado na requisição ao BD
-          ) => (
-            <li
-              key={filme.id}
-              className="bg-neutral-800 rounded-2xl flex flex-col items-left justify-center p-4 mr-8 gap-2 min-w-40"
-            >
-              <Movie filme={filme} />
-            </li>
-          )
-        )}
+        {filmes.map(filme => (
+          <li key={filme.id} className="flex flex-col items-left justify-center p-4 gap-2 min-w-48">
+            <Movie filme={filme} />
+          </li>
+        ))}
       </ul>
+
+      {genres.map((genre, index) => {
+        const filteredMovies = filmes.filter(filme => filme.category?.name === genre.name);
+        return (
+          filteredMovies.length > 0 && (
+            <div key={genre.id || index}>
+              <p className="font-medium text-lg mt-4">{genre.name}</p>
+              <ul className="flex flex-row overflow-x-auto">
+                {filteredMovies.map(filme => (
+                  <li key={filme.id} className="flex flex-col items-left justify-center p-4 gap-2 min-w-40">
+                    <Movie filme={filme} />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )
+        );
+      })}
     </article>
   );
 }

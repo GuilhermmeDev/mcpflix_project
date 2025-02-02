@@ -13,21 +13,20 @@ interface movieProps {
 export default function Movie({ filme }: movieProps) {
   return (
     <Link href={`/movie/${filme.id}`} passHref>
-      <img
-        src={filme.link_cover}
-        alt="logo_mcpflix"
-        width={150}
-        className="rounded-2xl py-1 h-56"
-      />
-      <p className="bg-neutral-700 p-2 rounded-2xl text-xs w-fit">
-        {filme.category?.name}
-      </p>
-      <div className="flex flex-row items-center justify-between w-full">
-        <div className="flex flex-col">
-          <p className="text-base font-medium">{filme.title}</p>
-          <p className="text-xs">{filme.release_year}</p>
+      <div className="relative bg-neutral-800 rounded-2xl overflow-hidden">
+        <img
+          src={filme.link_cover}
+          alt={filme.title}
+          className="w-full max-w-40 h-72 object-cover transition-transform duration-300 hover:scale-105"
+        />
+        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-2">
+          <p className="text-white font-medium">{filme.title}</p>
+          <p className="text-xs text-gray-300">{filme.release_year}</p>
+          <p className="text-xs text-gray-400">{filme.category?.name}</p>
         </div>
-        <i className="ri-play-fill text-black bg-white rounded-full py-2 px-3"></i>
+        <div className="absolute top-2 right-2">
+          <i className="ri-play-fill text-white bg-black rounded-full p-2"></i>
+        </div>
       </div>
     </Link>
   );
