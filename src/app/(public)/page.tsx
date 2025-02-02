@@ -9,7 +9,7 @@ export default function Landing() {
     return (
         <div className="flex flex-col items-center w-full mb-48">
             <div className="flex flex-row items-center justify-between w-5/6 bg-neutral-800 m-8 p-4 rounded-lg">
-                <Image src="logo_mcpflix.svg" alt="logo" width={150} height={150} />
+                <Image src="logo_mcpflix.svg" alt="logo" width={150} height={150} className="md:h-auto h-8" />
                 <div className="flex flex-row items-center justify-between gap-4">
                     <Link href="/login">
                         <button className="bg-neutral-700 text-white px-4 py-2 rounded-xl text-sm border-2 border-neutral-600">
@@ -17,13 +17,13 @@ export default function Landing() {
                         </button>
                     </Link>
                     <Link href="/register">
-                        <button className="bg-green-400 text-black px-4 py-2 rounded-xl text-sm">
-                            Registrar-se
+                        <button className="bg-green-400 text-black px-4 py-2 rounded-xl text-sm md:text-base">
+                            Registrar
                         </button>
                     </Link>
                 </div>
             </div>
-            <div className="flex flex-col items-center justify-center m-8 p-4 rounded-lg text-justify w-1/3">
+            <div className="flex flex-col items-center justify-center m-8 p-4 rounded-lg text-justify w-full">
                 <TypeAnimation
                     sequence={[
                         "Lugar onde o cinema da MCPF ganha vida.",
@@ -77,18 +77,18 @@ export default function Landing() {
                     <h1 className="text-5xl font-medium text-white">Features</h1>
                     <div className="flex flex-row items-center justify-between gap-4 w-5/6">
                         <div className="w-1/4">
-                            <h1 className="text-3xl font-medium text-white">Favoritos</h1>
-                            <p className="text-gray-400 text-center mt-4">Você pode marcar seus filmes como favoritos para ficar mais fácil de encontrá-los</p>
+                            <h1 className="md:text-3xl text-xl font-medium text-white">Favoritos</h1>
+                            <p className="text-gray-400 text-center mt-4 md:text-base text-sm">Você pode marcar seus filmes como favoritos para ficar mais fácil de encontrá-los</p>
                         </div>
 
                         <div className="w-1/4">
-                            <h1 className="text-3xl font-medium text-white">Qualidade</h1>
-                            <p className="text-gray-400 text-center mt-4">No MCPFlix, você pode contar com uma ótima qualidade de imagem e som dos filmes</p>
+                            <h1 className="md:text-3xl text-xl font-medium text-white">Qualidade</h1>
+                            <p className="text-gray-400 text-center mt-4 md:text-base text-sm">No MCPFlix, você pode contar com uma ótima qualidade de imagem e som dos filmes</p>
                         </div>
 
                         <div className="w-1/4">
-                            <h1 className="text-3xl font-medium text-white">Pesquisa</h1>
-                            <p className="text-gray-400 text-center mt-4">Pesquisa rápida por gênero ou pelo nome do filme</p>
+                            <h1 className="md:text-3xl text-xl font-medium text-white">Pesquisa</h1>
+                            <p className="text-gray-400 text-center mt-4 md:text-base text-sm">Pesquisa rápida por gênero ou pelo nome do filme</p>
                         </div>
                     </div>
                 </div>

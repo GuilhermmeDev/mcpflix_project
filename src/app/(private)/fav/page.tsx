@@ -35,11 +35,11 @@ export default function FavPage() {
     <>
       <TopBar movieTitle="Favoritos" />
       <div className="w-full h-fit overflow-y-hidden">
-        <ul className="flex flex-row w-fit ml-12 mt-12 overflow-x-auto">
+        <ul className="flex flex-row w-fit ml-6 mt-12 flex-wrap md:justify-start justify-center">
           {movies.map((movie) => (
             <li
               key={movie.id}
-              className="bg-neutral-800 rounded-2xl flex flex-col items-left justify-center p-4 mr-8 gap-2 min-w-40"
+              className="flex flex-col items-left justify-center p-4 mr-8 gap-2 min-w-40"
             >
               <Movie filme={movie} />
             </li>
