@@ -2,6 +2,7 @@
 
 # database keys
 .env.local
+.env
 
 # dependencies
 /node_modules
@@ -40,3 +41,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+
+#bun
+bun.lockb
+
+#pnpm
+pnpm-lock.yaml

@@ -52,7 +52,7 @@ export default function pageMovie({ params }: Props) {
   return (
     <>
       <TopBar movieTitle={movie.title} />
-      <VideoPlayer />
+      <VideoPlayer embedUrl={movie.link_drive} />
       <div className="mt-6 flex flex-col gap-6 mx-8">
         <div className="flex flex-row justify-between">
           <p className="font-medium text-3xl">{movie.title}</p>
@@ -66,7 +66,7 @@ export default function pageMovie({ params }: Props) {
           <MovieInfo label="Duração" movieContent={movie.duration} />
           <MovieInfo
             label="Data de Lançamento"
-            movieContent={movie.release_year}
+            movieContent={movie.release_year ?? "Não informado"}
           />
           <MovieInfo label="Genero" movieContent={movie.category.name} />
         </div>
