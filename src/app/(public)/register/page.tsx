@@ -17,7 +17,7 @@ export default function Register() {
   const [error, setError] = useState<string>("");
 
 
-  const handlerRegister = async (e : React.FormEvent<HTMLButtonElement>) => {
+  const handlerRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const isValid = validateEmail(email);
