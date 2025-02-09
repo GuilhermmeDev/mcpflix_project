@@ -12,7 +12,7 @@ interface NavbarProps {
 export default function Navbar({ onSearch }: NavbarProps) {
   const router = useRouter();
   const InputRef = useRef<HTMLInputElement>(null);
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<string | null>(null);
   const handlerImageClick = () => {
     InputRef.current?.focus(); // garante que ao clicar na imagem da lupa, está clicando também no input
   };

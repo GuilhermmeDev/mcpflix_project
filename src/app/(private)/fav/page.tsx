@@ -5,9 +5,18 @@ import { useEffect, useState } from "react";
 import Movie from "@/components/movie";
 import TopBar from "@/components/topBar";
 import useAuth from "@/auth/checkAuth";
+
+interface Movie {
+  id: number;
+  link_cover: string;
+  title: string;
+  release_year: number;
+  category: { name: string };
+}
+
 export default function FavPage() {
   useAuth();
-  const [movies, setMovies] = useState<any[]>([]);
+  const [movies, setMovies] = useState<Movie[]>([]);
 
   useEffect(() => {
     const fetchFavs = async () => {
@@ -31,6 +40,7 @@ export default function FavPage() {
     };
     fetchFavs();
   }, []);
+
   return (
     <>
       <TopBar movieTitle="Favoritos" />

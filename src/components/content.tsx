@@ -8,9 +8,22 @@ interface ContentProps {
   searchValue: string; // valor que foi digitado pelo usuario na barra de pesquisa (navbar)
 }
 
+interface Movie {
+  id: number;
+  link_cover: string;
+  title: string;
+  release_year: number;
+  category: { name: string };
+}
+
+interface Genre {
+  id: number;
+  name: string;
+}
+
 export default function Content({ searchValue }: ContentProps) {
-  const [filmes, setFilmes] = useState<any[]>([]);
-  const [genres, setGenres] = useState<any[]>([]);
+  const [filmes, setFilmes] = useState<Movie[]>([]);
+  const [genres, setGenres] = useState<Genre[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {

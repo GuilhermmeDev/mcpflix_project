@@ -1,5 +1,5 @@
 import Link from "next/link";
-
+import Image from "next/image";
 interface movieProps {
   filme: {
     id: number;
@@ -14,9 +14,11 @@ export default function Movie({ filme }: movieProps) {
   return (
     <Link href={`/movie/${filme.id}`} passHref>
       <div className="relative bg-neutral-800 rounded-2xl overflow-hidden">
-        <img
+        <Image
           src={filme.link_cover}
           alt={filme.title}
+          width={160}
+          height={280}
           className="w-full max-w-40 h-72 object-cover transition-transform duration-300 hover:scale-105"
         />
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-2">

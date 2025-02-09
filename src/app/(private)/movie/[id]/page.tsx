@@ -8,14 +8,25 @@ import TopBar from "@/components/topBar";
 import Fav from "./fav";
 import useAuth from "@/auth/checkAuth";
 import Page404 from "@/components/404";
-interface Props {
-  params: { id: string };
+
+interface Movie {
+  id: number;
+  title: string;
+  release_year: number;
+  duration: number;
+  synopsis: string;
+  link_drive: string;
+  category: { name: string };
 }
 
-export default function pageMovie({ params }: Props) {
+interface Props {
+  params: { id: number };
+}
+
+export default function PageMovie({ params }: Props) {
   useAuth();
 
-  const [movie, setMovie] = useState<any | null>(null);
+  const [movie, setMovie] = useState<Movie | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const { id } = React.use(params); // resgata o id do filme que está na URL (movie/id)
 
@@ -30,9 +41,8 @@ export default function pageMovie({ params }: Props) {
       if (error) {
         console.error(error);
         setErrorMessage("Filme não encontrado");
-
       } else {
-        setMovie(data ? data : null);
+        setMovie(data);
       }
     };
     fetchMovie();

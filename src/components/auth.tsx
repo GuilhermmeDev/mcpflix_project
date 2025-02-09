@@ -6,12 +6,11 @@ import { supabase } from "@/lib/supabaseClient";
 import useAuth from "@/auth/checkAuth";
 
 interface AuthProps {
-  handler: any;
+  handler: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
   setEmail: (value: string) => void;
   setPassw: (value: string) => void;
   setName?: (value: string) => void;
   error?: string;
-  success?: boolean;
 } // props de passagem de estados entre telas de registro e login
 
 export default function Auth({
@@ -20,7 +19,6 @@ export default function Auth({
   setPassw,
   setName,
   error,
-  success,
 }: AuthProps) {
 
   useAuth();
@@ -33,26 +31,6 @@ export default function Auth({
 
   return (
     <>
-      {success && ( // caixa de alerta para avisar que um email foi enviado caso seja um novo usuario registrado
-        <div
-          className="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md absolute"
-          role="alert"
-        >
-          <div className="flex">
-            <div className="py-1">
-              <i className="ri-information-line text-2xl mr-4"></i>
-            </div>
-            <div>
-              <p className="font-bold">
-                Enviamos um email de confirmação para você
-              </p>
-              <p className="text-sm">
-                Confira seu inbox e confirme sua conta clicando no link enviado.
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
       <div className="flex flex-col flex-grow min-h-full justify-center items-center">
         <div className="bg-neutral-800 p-6 rounded-3xl">
           <form onSubmit={handler} className="flex flex-col gap-4 w-fit ">
@@ -111,14 +89,11 @@ export default function Auth({
             </p>
 
             <div
-              className={`w-full ${
-                success ? "bg-gray-400" : "bg-green-400 "
-              } flex justify-center items-center rounded-lg`}
+              className={`w-full bg-green-400 flex justify-center items-center rounded-lg`}
             >
               <button
                 type="submit"
                 className="text-black font-medium w-fit p-2 font-sans text-sm"
-                disabled={success} // desabilita o botão em caso de sucesso na criação do usuario
               >
                 Enviar
               </button>

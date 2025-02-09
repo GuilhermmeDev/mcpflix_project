@@ -14,15 +14,15 @@ export default function Login() {
 
   const router = useRouter();
 
-  const handlerLogin = async (e) => {
+  const handlerLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (email.length > 0 && password.length > 0) {
-      const { data, error } = await supabase.auth.signInWithPassword({
+      const { error } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
 
-      if (error<AuthApiError>) {
+      if (error && error instanceof AuthApiError) {
         console.error(error);
         setError("Seu email e/ou senha estão incorretos");
       } else {

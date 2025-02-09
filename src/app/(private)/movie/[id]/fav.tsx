@@ -34,13 +34,13 @@ export default function Fav({ movieId }: FavProps) {
                 favs: [],
               },
             });
-            addMovieFav(data.user.user_metadata.favs);
+            addMovieFav(data.user?.user_metadata.favs);
           }
         }
       }
     };
     fetchUserFavs();
-  }, [movieId]);
+  }, [movieId, addMovieFav]);
 
   const handleFavClick = async () => {
     const { data } = await supabase.auth.getUser();

@@ -16,7 +16,6 @@ export default function Register() {
 
   const [error, setError] = useState<string>("");
 
-  const [success, setSuccess] = useState<boolean>(false);
 
   const handlerRegister = async (e : React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -75,7 +74,6 @@ export default function Register() {
         setName={setName}
         handler={handlerRegister}
         error={error}
-        success={success}
       />
     </>
   );
