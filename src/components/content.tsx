@@ -38,12 +38,12 @@ export default function Content({ searchValue }: ContentProps) {
       }
 
       if (searchValue) {
-        const filteredData = allFilmesData.filter(filme =>
+        const filteredData = allFilmesData?.filter(filme =>
           filme.title.toLowerCase().includes(searchValue.toLowerCase())
         );
-        setFilmes(filteredData); // Armazena os filmes filtrados
+        setFilmes(filteredData || []); // Armazena os filmes filtrados
       } else {
-        setFilmes(allFilmesData); // Armazena todos os filmes se não houver busca
+        setFilmes(allFilmesData || []); // Armazena todos os filmes se não houver busca
       }
 
       // Busca todos os gêneros
