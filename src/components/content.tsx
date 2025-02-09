@@ -28,7 +28,7 @@ export default function Content({ searchValue }: ContentProps) {
   useEffect(() => {
     const fetchData = async () => {
       // Busca todos os filmes
-      const { data: allFilmesData, error: filmesError } = await supabase
+      const { data: allFilmesData = [], error: filmesError } = await supabase
         .from("movies")
         .select("*, category:category_id(name)");
 
@@ -37,8 +37,14 @@ export default function Content({ searchValue }: ContentProps) {
         return;
       }
 
-      // Armazena todos os filmes
-      setFilmes(allFilmesData);
+      if (searchValue) {
+        const filteredData = allFilmesData.filter(filme =>
+          filme.title.toLowerCase().includes(searchValue.toLowerCase())
+        );
+        setFilmes(filteredData); // Armazena os filmes filtrados
+      } else {
+        setFilmes(allFilmesData); // Armazena todos os filmes se não houver busca
+      }
 
       // Busca todos os gêneros
       const { data: genresData, error: genresError } = await supabase
@@ -55,7 +61,6 @@ export default function Content({ searchValue }: ContentProps) {
 
     fetchData();
   }, [searchValue]);
-
 
   return (
     <article className="ml-4 md:ml-0">
