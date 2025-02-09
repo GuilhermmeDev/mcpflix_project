@@ -20,7 +20,7 @@ interface Movie {
 }
 
 interface Props {
-  params: { id: string };
+  params: Promise<{ id: number }>;
 }
 
 export default function PageMovie({ params }: Props) {
@@ -28,7 +28,7 @@ export default function PageMovie({ params }: Props) {
 
   const [movie, setMovie] = useState<Movie | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const { id } = params; // resgata o id do filme que está na URL (movie/id)
+  const { id } = React.use(params); // resgata o id do filme que está na URL (movie/id)
 
   useEffect(() => {
     const fetchMovie = async () => {

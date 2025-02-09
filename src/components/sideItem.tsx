@@ -1,5 +1,3 @@
-import PropTypes from "prop-types";
-
 interface SideItemProps {
   name: string;
   pathIcon: string;
@@ -26,8 +24,3 @@ export default function SideItem({ name, pathIcon, path }: SideItemProps) {
     </>
   );
 }
-
-SideItem.propTypes = {
-  name: PropTypes.string.isRequired,
-  path: PropTypes.string.isRequired,
-};
