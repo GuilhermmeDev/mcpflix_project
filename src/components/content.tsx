@@ -66,7 +66,7 @@ export default function Content({ searchValue }: ContentProps) {
     <article className="ml-4 md:ml-0">
       <p className="font-medium text-lg">Talvez você goste</p>
       <ul className="flex flex-row overflow-x-auto">
-        {filmes.slice(0, 8).map(filme => ( // Exibe apenas os 8 primeiros filmes
+        {filmes.slice(0, 6).map(filme => ( // Exibe apenas os 8 primeiros filmes
           <li key={filme.id} className="flex flex-col items-left justify-center p-4 gap-2 min-w-48">
             <Movie filme={filme} />
           </li>
@@ -75,7 +75,7 @@ export default function Content({ searchValue }: ContentProps) {
 
       {genres.map((genre, index) => {
         const filteredMovies = filmes.filter(filme => 
-          filme.category?.name === genre.name && !filmes.slice(0, 8).some(f => f.id === filme.id) // Garante que não se repitam
+          filme.category?.name === genre.name && !filmes.slice(0, 6).some(f => f.id === filme.id) // Garante que não se repitam
         );
         return (
           filteredMovies.length > 0 && (
