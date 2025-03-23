@@ -12,9 +12,9 @@ import Page404 from "@/components/404";
 interface Movie {
   id: number;
   title: string;
-  release_year: number;
+  release_year: number | undefined;
   duration: number;
-  synopsis: string;
+  synopsis: string | undefined;
   link_drive: string;
   category: { name: string };
 }
@@ -54,9 +54,10 @@ export default function PageMovie({ params }: Props) {
 
   if (!movie) {
     return (
-    <div className="flex items-center justify-center h-screen">
-      <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-green-400"></div>
-    </div>) // animação que aparece enquanto se espera a requisição
+      <div className="flex items-center justify-center h-screen">
+        <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-green-400"></div>
+      </div>
+    ); // animação que aparece enquanto se espera a requisição
   }
 
   return (
@@ -70,7 +71,9 @@ export default function PageMovie({ params }: Props) {
         </div>
         <div className="flex flex-col gap-2">
           <p className="font-medium text-2xl">Descrição</p>
-          <p >{movie.synopsis}</p>
+          <p className="text-sm text-gray-300">
+            {movie.synopsis ?? "Este filme não possui descrição."}
+          </p>
         </div>
         <div className="w-full md:w-1/4 grid grid-cols-3">
           <MovieInfo label="Duração" movieContent={movie.duration} />
