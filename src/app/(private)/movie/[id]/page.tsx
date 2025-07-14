@@ -1,13 +1,12 @@
-"use client";
-import { supabase } from "@/lib/supabaseClient";
-import React from "react";
-import { useEffect, useState } from "react";
-import VideoPlayer from "./videoPlayer";
-import MovieInfo from "@/components/movieInfo";
-import TopBar from "@/components/topBar";
-import Fav from "./fav";
-import useAuth from "@/auth/checkAuth";
-import Page404 from "@/components/404";
+'use client';
+import React, { useEffect, useState } from 'react';
+import useAuth from '@/auth/checkAuth';
+import Page404 from '@/components/404';
+import MovieInfo from '@/components/movieInfo';
+import TopBar from '@/components/topBar';
+import { supabase } from '@/lib/supabaseClient';
+import Fav from './fav';
+import VideoPlayer from './videoPlayer';
 
 interface Movie {
   id: number;
@@ -33,14 +32,14 @@ export default function PageMovie({ params }: Props) {
   useEffect(() => {
     const fetchMovie = async () => {
       const { data, error } = await supabase
-        .from("movies")
-        .select("*, category:category_id(name)")
-        .eq("id", id)
+        .from('movies')
+        .select('*, category:category_id(name)')
+        .eq('id', id)
         .single(); // retorna APENAS um filme que foi encontrado com tais condições
 
       if (error) {
         console.error(error);
-        setErrorMessage("Filme não encontrado");
+        setErrorMessage('Filme não encontrado');
       } else {
         setMovie(data);
       }
@@ -54,8 +53,8 @@ export default function PageMovie({ params }: Props) {
 
   if (!movie) {
     return (
-      <div className="flex items-center justify-center h-screen">
-        <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-green-400"></div>
+      <div className="flex h-screen items-center justify-center">
+        <div className="h-32 w-32 animate-spin rounded-full border-green-400 border-t-2 border-b-2" />
       </div>
     ); // animação que aparece enquanto se espera a requisição
   }
@@ -64,22 +63,22 @@ export default function PageMovie({ params }: Props) {
     <>
       <TopBar movieTitle={movie.title} />
       <VideoPlayer embedUrl={movie.link_drive} />
-      <div className="mt-6 flex flex-col gap-6 mx-8">
+      <div className="mx-8 mt-6 flex flex-col gap-6">
         <div className="flex flex-row justify-between">
           <p className="font-medium text-3xl">{movie.title}</p>
           <Fav movieId={movie.id} />
         </div>
         <div className="flex flex-col gap-2">
           <p className="font-medium text-2xl">Descrição</p>
-          <p className="text-sm text-gray-300">
-            {movie.synopsis ?? "Este filme não possui descrição."}
+          <p className="text-gray-300 text-sm">
+            {movie.synopsis ?? 'Este filme não possui descrição.'}
           </p>
         </div>
-        <div className="w-full md:w-1/4 grid grid-cols-3">
+        <div className="grid w-full grid-cols-3 md:w-1/4">
           <MovieInfo label="Duração" movieContent={movie.duration} />
           <MovieInfo
             label="Data de Lançamento"
-            movieContent={movie.release_year ?? "Não informado"}
+            movieContent={movie.release_year ?? 'Não informado'}
           />
           <MovieInfo label="Genero" movieContent={movie.category.name} />
         </div>

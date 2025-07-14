@@ -1,21 +1,21 @@
-"use client";
-import { supabase } from "@/lib/supabaseClient";
-import React, { useState } from "react";
-import Auth from "@/components/auth";
-import { emailSchema } from "@/lib/validateEmail";
-import { z } from "zod";
-import { useRouter } from "next/navigation";
+'use client';
+import { useRouter } from 'next/navigation';
+import type React from 'react';
+import { useState } from 'react';
+import { z } from 'zod';
+import Auth from '@/components/auth';
+import { supabase } from '@/lib/supabaseClient';
+import { emailSchema } from '@/lib/validateEmail';
 
 export default function Register() {
   const router = useRouter();
-  const [email, setEmail] = useState<string>("");
+  const [email, setEmail] = useState<string>('');
 
-  const [password, setPassw] = useState<string>("");
+  const [password, setPassw] = useState<string>('');
 
-  const [name, setName] = useState<string>("");
+  const [name, setName] = useState<string>('');
 
-  const [error, setError] = useState<string>("");
-
+  const [error, setError] = useState<string>('');
 
   const handlerRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -42,22 +42,21 @@ export default function Register() {
       }
       if (error) {
         console.error(error);
-        setError("Alguma coisa deu errado :(");
+        setError('Alguma coisa deu errado :(');
       } else {
-        router.push("/dashboard");
+        router.push('/dashboard');
       }
     }
   };
 
-
-  const validateEmail = (email : string) => {
+  const validateEmail = (email: string) => {
     try {
       emailSchema.parse({ email });
       setEmail(email);
     } catch (error) {
       if (error instanceof z.ZodError) {
         // Aqui você pode tratar o erro como preferir
-        setEmail("");
+        setEmail('');
         // Se você tiver uma função para mostrar erros, pode usá-la aqui
         setError(error.errors[0].message);
         return false;
@@ -67,14 +66,12 @@ export default function Register() {
   };
 
   return (
-    <>
-      <Auth
-        setEmail={setEmail}
-        setPassw={setPassw}
-        setName={setName}
-        handler={handlerRegister}
-        error={error}
-      />
-    </>
+    <Auth
+      error={error}
+      handler={handlerRegister}
+      setEmail={setEmail}
+      setName={setName}
+      setPassw={setPassw}
+    />
   );
 }

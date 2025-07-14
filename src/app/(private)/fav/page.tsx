@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import { supabase } from "@/lib/supabaseClient";
-import { useEffect, useState } from "react";
-import Movie from "@/components/movie";
-import TopBar from "@/components/topBar";
-import useAuth from "@/auth/checkAuth";
+import { useEffect, useState } from 'react';
+import useAuth from '@/auth/checkAuth';
+import Movie from '@/components/movie';
+import TopBar from '@/components/topBar';
+import { supabase } from '@/lib/supabaseClient';
 
-interface Movie {
+interface MovieModel {
   id: number;
   link_cover: string;
   title: string;
@@ -16,7 +16,7 @@ interface Movie {
 
 export default function FavPage() {
   useAuth();
-  const [movies, setMovies] = useState<Movie[]>([]);
+  const [movies, setMovies] = useState<MovieModel[]>([]);
 
   useEffect(() => {
     const fetchFavs = async () => {
@@ -26,9 +26,9 @@ export default function FavPage() {
         const userFavs: number[] = data.user.user_metadata.favs;
         if (userFavs.length > 0) {
           const { data, error } = await supabase
-            .from("movies")
-            .select("*, category:category_id(name)")
-            .in("id", userFavs);
+            .from('movies')
+            .select('*, category:category_id(name)')
+            .in('id', userFavs);
 
           if (error) {
             console.error(error);
@@ -44,12 +44,12 @@ export default function FavPage() {
   return (
     <>
       <TopBar movieTitle="Favoritos" />
-      <div className="w-full h-fit overflow-y-hidden">
-        <ul className="flex flex-row w-fit ml-6 mt-12 flex-wrap md:justify-start justify-center">
+      <div className="h-fit w-full overflow-y-hidden">
+        <ul className="mt-12 ml-6 flex w-fit flex-row flex-wrap justify-center md:justify-start">
           {movies.map((movie) => (
             <li
+              className="items-left mr-8 flex min-w-40 flex-col justify-center gap-2 p-4"
               key={movie.id}
-              className="flex flex-col items-left justify-center p-4 mr-8 gap-2 min-w-40"
             >
               <Movie filme={movie} />
             </li>

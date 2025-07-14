@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { supabase } from "@/lib/supabaseClient";
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
+import { supabase } from '@/lib/supabaseClient';
 
 interface FavProps {
   movieId: number;
@@ -40,7 +40,7 @@ export default function Fav({ movieId }: FavProps) {
       }
     };
     fetchUserFavs();
-  }, [movieId, addMovieFav]);
+  }, [movieId]);
 
   const handleFavClick = async () => {
     const { data } = await supabase.auth.getUser();
@@ -68,13 +68,11 @@ export default function Fav({ movieId }: FavProps) {
     }
   };
   return (
-    <>
-      <i
-        className={`${
-          fav ? "ri-heart-3-fill text-green-400" : "ri-heart-3-line text-white"
-        } text-3xl`}
-        onClick={handleFavClick}
-      ></i>
-    </>
+    <i
+      className={`${
+        fav ? 'ri-heart-3-fill text-green-400' : 'ri-heart-3-line text-white'
+      } text-3xl`}
+      onClick={handleFavClick}
+    />
   );
 }
