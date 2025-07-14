@@ -19,6 +19,7 @@
     "ts-node": "^10.9.2"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.1.1",
     "@eslint/eslintrc": "^3",
     "@types/node": "^22.10.7",
     "@types/react": "^19",
@@ -29,6 +30,7 @@
     "prop-types": "^15.8.1",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.7.3",
+    "ultracite": "5.0.35",
     "zod": "^3.24.1"
   }
 }

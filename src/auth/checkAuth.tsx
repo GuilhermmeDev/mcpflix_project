@@ -1,8 +1,8 @@
-import { supabase } from "@/lib/supabaseClient";
-import { useRouter, usePathname } from "next/navigation";
-import { useEffect } from "react";
+import { usePathname, useRouter } from 'next/navigation';
+import { useEffect } from 'react';
+import { supabase } from '@/lib/supabaseClient';
 
-const publicRoutes = ["/login", "/register", "/"]; // Defina suas rotas públicas aqui
+const publicRoutes = ['/login', '/register', '/']; // Defina suas rotas públicas aqui
 
 const useAuth = () => {
   const router = useRouter();
@@ -12,16 +12,13 @@ const useAuth = () => {
     const checkAuth = async () => {
       const { data } = await supabase.auth.getUser();
 
-      if (data.user) {
-        // Se o usuário estiver autenticado e em uma rota pública, redirecione para "/"
-        if (publicRoutes.includes(pathname)) {
-          router.replace("/dashboard");
-        }
-      } else {
-        // Se o usuário não estiver autenticado e estiver em uma rota privada, redirecione para a página de login
-        if (!publicRoutes.includes(pathname)) {
-          router.replace("/login");
-        }
+      // Se o usuário estiver autenticado e em uma rota pública, redirecione para "/"
+      if (data.user && publicRoutes.includes(pathname)) {
+        router.replace('/dashboard');
+      }
+      // Se o usuário não estiver autenticado e estiver em uma rota privada, redirecione para a página de login
+      if (!publicRoutes.includes(pathname)) {
+        router.replace('/login');
       }
     };
 

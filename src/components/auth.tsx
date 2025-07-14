@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import Image from "next/image";
-import { supabase } from "@/lib/supabaseClient";
-import useAuth from "@/auth/checkAuth";
+import Image from 'next/image';
+import Link from 'next/link';
+import useAuth from '@/auth/checkAuth';
+import { supabase } from '@/lib/supabaseClient';
 
 interface AuthProps {
   handler: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
@@ -20,96 +20,98 @@ export default function Auth({
   setName,
   error,
 }: AuthProps) {
-
   useAuth();
 
   const handleGoogleAuth = async () => {
     await supabase.auth.signInWithOAuth({
-      provider: "google",
+      provider: 'google',
     });
   };
 
   return (
-    <>
-      <div className="flex flex-col flex-grow min-h-full justify-center items-center">
-        <div className="bg-neutral-800 p-6 rounded-3xl">
-          <form onSubmit={handler} className="flex flex-col gap-4 w-fit ">
-            <div className="flex flex-col w-full items-center justify-center gap-3">
+    <div>
+      <div className="flex min-h-full flex-grow flex-col items-center justify-center">
+        <div className="rounded-3xl bg-neutral-800 p-6">
+          <form className="flex w-fit flex-col gap-4 " onSubmit={handler}>
+            <div className="flex w-full flex-col items-center justify-center gap-3">
               <Image
-                src={"/logo_mcpflix.svg"}
-                width={120}
-                height={100}
                 alt="logo mcpflix"
+                height={100}
+                src={'/logo_mcpflix.svg'}
+                width={120}
               />
-              <p className="text-medium text-xl text-center font-sans">
-                {setName ? "Bem vindo!" : "Bem vindo de volta!"}
+              <p className="text-center font-sans text-medium text-xl">
+                {setName ? 'Bem vindo!' : 'Bem vindo de volta!'}
               </p>
-              <p className="text-xs text-neutral-400 text-medium font-sans">
-                {setName ? "Já possui uma conta?" : "Não tem uma conta?"}
+              <p className="font-sans text-medium text-neutral-400 text-xs">
+                {setName ? 'Já possui uma conta?' : 'Não tem uma conta?'}
                 <Link
-                  className="text-green-300 font-semibold"
-                  href={setName ? "/login" : "/register"} // personaliza os textos dependendo da pagina pai (login ou registro)
+                  className="font-semibold text-green-300"
+                  href={setName ? '/login' : '/register'} // personaliza os textos dependendo da pagina pai (login ou registro)
                 >
-                  {setName ? " Faça Login" : " Registre-se"}
+                  {setName ? ' Faça Login' : ' Registre-se'}
                 </Link>
               </p>
             </div>
             {setName && (
               <input
-                type="text"
-                name="name"
+                className="rounded-xl bg-neutral-900 p-2 text-sm text-white placeholder:font-sans placeholder:text-neutral-300 focus:border-none focus:outline-none"
                 id="name"
-                className="bg-neutral-900 focus:border-none focus:outline-none text-white rounded-xl p-2 placeholder:font-sans text-sm placeholder:text-neutral-300"
+                name="name"
+                onChange={(e) => setName(e.target.value)}
                 placeholder="Nome"
-                onChange={(e) => setName(e.target.value)} // compartilha o estado do input para a pagina pai
-                required
+                required // compartilha o estado do input para a pagina pai
+                type="text"
               />
             )}
             <input
-              type="email"
-              name="email"
+              className="rounded-xl bg-neutral-900 p-2 text-sm text-white placeholder:font-sans placeholder:text-neutral-300 focus:border-none focus:outline-none"
               id="email"
+              name="email"
               onChange={(e) => setEmail(e.target.value)} // compartilha o estado do input para a pagina pai
               placeholder="Email"
-              className="bg-neutral-900 focus:border-none focus:outline-none text-white rounded-xl p-2 placeholder:font-sans text-sm placeholder:text-neutral-300"
               required
+              type="email"
             />
             <input
-              type="password"
-              name="passw"
+              className="rounded-xl bg-neutral-900 p-2 text-sm text-white placeholder:font-sans placeholder:text-neutral-300 focus:border-none focus:outline-none"
               id="passw"
-              className="bg-neutral-900 focus:border-none focus:outline-none text-white rounded-xl p-2 placeholder:font-sans text-sm placeholder:text-neutral-300"
-              onChange={(e) => setPassw(e.target.value)} // compartilha o estado do input para a pagina pai
-              placeholder="Senha"
+              name="passw"
+              onChange={(e) => setPassw(e.target.value)}
+              placeholder="Senha" // compartilha o estado do input para a pagina pai
               required
+              type="password"
             />
 
-            <p className="text-red-500 font-medium font-sans text-xs text-center">
+            <p className="text-center font-medium font-sans text-red-500 text-xs">
               {error}
             </p>
 
             <div
-              className={`w-full bg-green-400 flex justify-center items-center rounded-lg`}
+              className={
+                'flex w-full items-center justify-center rounded-lg bg-green-400'
+              }
             >
               <button
+                className="w-fit p-2 font-medium font-sans text-black text-sm"
                 type="submit"
-                className="text-black font-medium w-fit p-2 font-sans text-sm"
               >
                 Enviar
               </button>
             </div>
           </form>
           <hr className="my-4 border-neutral-600" />
-          <div className="w-full flex justify-center items-center">
+          <div className="flex w-full items-center justify-center">
             <button
-              className="w-fit bg-neutral-900 rounded-md py-2 px-12"
+              className="w-fit rounded-md bg-neutral-900 px-12 py-2"
               onClick={handleGoogleAuth}
+              type="button"
             >
-              <i className="ri-google-fill"></i>
+              <i className="ri-google-fill" />
             </button>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

@@ -1,14 +1,20 @@
-
 export default function Footer() {
   return (
-    <footer className="bg-neutral-900 text-white p-4 flex flex-col items-center relative bottom-0 w-full mt-6">
-      <div className="flex space-x-4 mb-4">
-        <a href="https://github.com/GuilhermmeDev" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400">
-            <i className="ri-github-fill text-2xl"></i>
+    <footer className="relative bottom-0 mt-6 flex w-full flex-col items-center bg-neutral-900 p-4 text-white">
+      <div className="mb-4 flex space-x-4">
+        <a
+          className="hover:text-gray-400"
+          href="https://github.com/GuilhermmeDev"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <i className="ri-github-fill text-2xl" />
         </a>
       </div>
-      <p className="text-sm text-gray-400 text-center">© {new Date().getFullYear()} GuilhermmeDev. Todos os direitos reservados.</p>
+      <p className="text-center text-gray-400 text-sm">
+        © {new Date().getFullYear()} GuilhermmeDev. Todos os direitos
+        reservados.
+      </p>
     </footer>
   );
 }
-

@@ -1,24 +1,23 @@
-import Image from "next/image";
-import SideItem from "./sideItem";
+import Image from 'next/image';
+import SideItem from './sideItem';
 export default function Sidebar() {
   return (
     // tag aside é responsiva e toma diferentes comportamentos dependendo da resolução da tela
-    <aside className="md:max-h-fit md:sticky md:top-1/6 max-h-24 w-fit min-w-16 md:ml-8 my-4 md:my-8 bg-neutral-800 rounded-3xl p-4 flex md:flex-col items-center sm:w-fit flex-row fixed bottom-2 z-10">
+    <aside className="fixed bottom-2 z-10 my-4 flex max-h-24 w-fit min-w-16 flex-row items-center rounded-3xl bg-neutral-800 p-4 sm:w-fit md:sticky md:top-1/6 md:my-8 md:ml-8 md:max-h-fit md:flex-col">
       <Image
-        src={"/logo_mcpflix.svg"}
         alt="logo_mcpflix"
-        width={120}
+        className="mx-4 md:my-8"
         height={100}
-        className="md:my-8 mx-4"
+        src={'/logo_mcpflix.svg'}
+        width={120}
       />
 
-      <div className="w-full flex md:flex-col gap-6 flex-row">
-        <SideItem name={"Home"} pathIcon={"ri-home-5-line"} path="/" />
+      <div className="flex w-full flex-row gap-6 md:flex-col">
+        <SideItem name={'Home'} path="/" pathIcon={'ri-home-5-line'} />
 
-        <SideItem name={"Favoritos"} pathIcon={"ri-heart-3-line"} path="/fav" />
+        <SideItem name={'Favoritos'} path="/fav" pathIcon={'ri-heart-3-line'} />
 
-        <hr className="border-neutral-600 mx-2 hidden md:block" />
-
+        <hr className="mx-2 hidden border-neutral-600 md:block" />
       </div>
     </aside>
   );

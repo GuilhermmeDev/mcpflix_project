@@ -6,21 +6,15 @@ interface SideItemProps {
 export default function SideItem({ name, pathIcon, path }: SideItemProps) {
   // componente que cria cada elemento na barra de navegação
   return (
-    <>
-      <a
-        className="flex flex-row items-center gap-2 w-full justify-center md:justify-start"
-        href={path}
-      >
-        <i
-          className={`${pathIcon} text-xl md:bg-transparent text-neutral-300`}
-        />
+    <a
+      className="flex w-full flex-row items-center justify-center gap-2 md:justify-start"
+      href={path}
+    >
+      <i className={`${pathIcon} text-neutral-300 text-xl md:bg-transparent`} />
 
-        <p
-          className={`text-base text-ellipsis overflow-hidden hidden md:block`}
-        >
-          {name}
-        </p>
-      </a>
-    </>
+      <p className={'hidden overflow-hidden text-ellipsis text-base md:block'}>
+        {name}
+      </p>
+    </a>
   );
 }

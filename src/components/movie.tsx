@@ -1,5 +1,6 @@
-import Link from "next/link";
-import Image from "next/image";
+import Image from 'next/image';
+import Link from 'next/link';
+
 interface movieProps {
   filme: {
     id: number;
@@ -13,21 +14,21 @@ interface movieProps {
 export default function Movie({ filme }: movieProps) {
   return (
     <Link href={`/movie/${filme.id}`} passHref>
-      <div className="relative bg-neutral-800 rounded-2xl overflow-hidden">
+      <div className="relative overflow-hidden rounded-2xl bg-neutral-800">
         <Image
-          src={filme.link_cover}
           alt={filme.title}
-          width={160}
+          className="h-72 w-full max-w-40 object-cover transition-transform duration-300 hover:scale-105"
           height={280}
-          className="w-full max-w-40 h-72 object-cover transition-transform duration-300 hover:scale-105"
+          src={filme.link_cover}
+          width={160}
         />
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-2">
-          <p className="text-white font-medium">{filme.title}</p>
-          <p className="text-xs text-gray-300">{filme.release_year}</p>
-          <p className="text-xs text-gray-400">{filme.category?.name}</p>
+        <div className="absolute right-0 bottom-0 left-0 bg-gradient-to-t from-black to-transparent p-2">
+          <p className="font-medium text-white">{filme.title}</p>
+          <p className="text-gray-300 text-xs">{filme.release_year}</p>
+          <p className="text-gray-400 text-xs">{filme.category?.name}</p>
         </div>
         <div className="absolute top-2 right-2">
-          <i className="ri-play-fill text-white bg-black rounded-full p-2"></i>
+          <i className="ri-play-fill rounded-full bg-black p-2 text-white" />
         </div>
       </div>
     </Link>
