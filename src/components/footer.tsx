@@ -1,9 +1,9 @@
 export default function Footer() {
   return (
-    <footer className="relative bottom-0 mt-6 flex w-full flex-col items-center bg-neutral-900 p-4 text-white">
-      <div className="mb-4 flex space-x-4">
+    <footer className="relative bottom-0 mt-6 flex w-full flex-col items-center bg-accent p-4 text-white">
+      <div className="mb-4 flex space-x-4 text-muted-foreground">
         <a
-          className="hover:text-gray-400"
+          className="hover:text-primary"
           href="https://github.com/GuilhermmeDev"
           rel="noopener noreferrer"
           target="_blank"
@@ -11,7 +11,7 @@ export default function Footer() {
           <i className="ri-github-fill text-2xl" />
         </a>
       </div>
-      <p className="text-center text-gray-400 text-sm">
+      <p className="text-center text-sm">
         © {new Date().getFullYear()} GuilhermmeDev. Todos os direitos
         reservados.
       </p>

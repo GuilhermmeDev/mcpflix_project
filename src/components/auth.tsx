@@ -4,6 +4,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import useAuth from '@/auth/checkAuth';
 import { supabase } from '@/lib/supabaseClient';
+import { Button } from './ui/button';
+import { Input } from './ui/input';
 
 interface AuthProps {
   handler: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
@@ -29,10 +31,10 @@ export default function Auth({
   };
 
   return (
-    <div>
+    <div className="h-screen">
       <div className="flex min-h-full flex-grow flex-col items-center justify-center">
-        <div className="rounded-3xl bg-neutral-800 p-6">
-          <form className="flex w-fit flex-col gap-4 " onSubmit={handler}>
+        <div className="w-1/4 rounded-3xl border border-border bg-background p-6">
+          <form className="flex w-full flex-col gap-4 " onSubmit={handler}>
             <div className="flex w-full flex-col items-center justify-center gap-3">
               <Image
                 alt="logo mcpflix"
@@ -43,10 +45,10 @@ export default function Auth({
               <p className="text-center font-sans text-medium text-xl">
                 {setName ? 'Bem vindo!' : 'Bem vindo de volta!'}
               </p>
-              <p className="font-sans text-medium text-neutral-400 text-xs">
+              <p className="font-sans text-medium text-primary text-xs">
                 {setName ? 'Já possui uma conta?' : 'Não tem uma conta?'}
                 <Link
-                  className="font-semibold text-green-300"
+                  className="font-semibold text-primary"
                   href={setName ? '/login' : '/register'} // personaliza os textos dependendo da pagina pai (login ou registro)
                 >
                   {setName ? ' Faça Login' : ' Registre-se'}
@@ -54,8 +56,7 @@ export default function Auth({
               </p>
             </div>
             {setName && (
-              <input
-                className="rounded-xl bg-neutral-900 p-2 text-sm text-white placeholder:font-sans placeholder:text-neutral-300 focus:border-none focus:outline-none"
+              <Input
                 id="name"
                 name="name"
                 onChange={(e) => setName(e.target.value)}
@@ -64,8 +65,7 @@ export default function Auth({
                 type="text"
               />
             )}
-            <input
-              className="rounded-xl bg-neutral-900 p-2 text-sm text-white placeholder:font-sans placeholder:text-neutral-300 focus:border-none focus:outline-none"
+            <Input
               id="email"
               name="email"
               onChange={(e) => setEmail(e.target.value)} // compartilha o estado do input para a pagina pai
@@ -73,8 +73,7 @@ export default function Auth({
               required
               type="email"
             />
-            <input
-              className="rounded-xl bg-neutral-900 p-2 text-sm text-white placeholder:font-sans placeholder:text-neutral-300 focus:border-none focus:outline-none"
+            <Input
               id="passw"
               name="passw"
               onChange={(e) => setPassw(e.target.value)}
@@ -87,28 +86,23 @@ export default function Auth({
               {error}
             </p>
 
-            <div
-              className={
-                'flex w-full items-center justify-center rounded-lg bg-green-400'
-              }
+            <Button
+              className="w-full p-2 font-medium font-sans text-background text-sm"
+              type="submit"
             >
-              <button
-                className="w-fit p-2 font-medium font-sans text-black text-sm"
-                type="submit"
-              >
-                Enviar
-              </button>
-            </div>
+              Enviar
+            </Button>
           </form>
           <hr className="my-4 border-neutral-600" />
           <div className="flex w-full items-center justify-center">
-            <button
-              className="w-fit rounded-md bg-neutral-900 px-12 py-2"
+            <Button
+              className="w-fit rounded-md px-12 py-2"
               onClick={handleGoogleAuth}
               type="button"
+              variant={'secondary'}
             >
               <i className="ri-google-fill" />
-            </button>
+            </Button>
           </div>
         </div>
       </div>

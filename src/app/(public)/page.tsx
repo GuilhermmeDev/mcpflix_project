@@ -8,7 +8,7 @@ export default function Landing() {
   useAuth();
   return (
     <div className="mb-48 flex w-full flex-col items-center">
-      <div className="m-8 flex w-5/6 flex-row items-center justify-between rounded-lg bg-neutral-800 p-4">
+      <div className="m-8 flex w-5/6 flex-row items-center justify-between rounded-lg bg-accent p-4">
         <Image
           alt="logo"
           className="h-8 md:h-auto"
@@ -19,7 +19,7 @@ export default function Landing() {
         <div className="flex flex-row items-center justify-between gap-4">
           <Link href="/login">
             <button
-              className="rounded-xl border-2 border-neutral-600 bg-neutral-700 px-4 py-2 text-sm text-white"
+              className="rounded-xl border-2 border-border bg-secondary px-4 py-2 text-foreground text-sm"
               type="button"
             >
               Login
@@ -27,7 +27,7 @@ export default function Landing() {
           </Link>
           <Link href="/register">
             <button
-              className="rounded-xl bg-green-400 px-4 py-2 text-black text-sm md:text-base"
+              className="rounded-xl bg-primary p-2 text-background text-sm"
               type="button"
             >
               Registrar
@@ -37,7 +37,7 @@ export default function Landing() {
       </div>
       <div className="m-8 flex w-full flex-col items-center justify-center rounded-lg p-4 text-justify">
         <TypeAnimation
-          className="text-center font-medium text-5xl text-white"
+          className="text-center font-medium text-5xl text-foreground"
           sequence={['Lugar onde o cinema da MCPF ganha vida.']}
           speed={1}
         />
@@ -47,7 +47,7 @@ export default function Landing() {
         </p>
         <Link href="/login">
           <button
-            className="mt-4 rounded-xl bg-green-400 px-4 py-2 text-black text-sm"
+            className="mt-4 rounded-xl bg-primary px-4 py-2 text-background text-sm"
             type="button"
           >
             Comece agora

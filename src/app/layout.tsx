@@ -21,11 +21,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html className={poppins.className} lang="en">
+    <html className={`${poppins.className} dark`} lang="pt-BR">
       <head>
         <meta content="width=device-width, initial-scale=1.0" name="viewport" />
       </head>
-      <body className="relative flex min-h-screen w-full flex-grow flex-col">
+      <body className="relative flex min-h-screen w-full flex-grow flex-col bg-background">
         <main className="flex flex-grow flex-col">{children}</main>
         <Footer />
       </body>
