@@ -3,9 +3,18 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import useAuth from '@/auth/checkAuth';
+import { Button } from '@/components/ui/button';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import { supabase } from '@/lib/supabaseClient';
-import { Button } from './ui/button';
-import { Input } from './ui/input';
 
 interface AuthProps {
   handler: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
@@ -33,78 +42,80 @@ export default function Auth({
   return (
     <div className="h-screen">
       <div className="flex min-h-full flex-grow flex-col items-center justify-center">
-        <div className="w-1/4 rounded-3xl border border-border bg-background p-6">
-          <form className="flex w-full flex-col gap-4 " onSubmit={handler}>
-            <div className="flex w-full flex-col items-center justify-center gap-3">
-              <Image
-                alt="logo mcpflix"
-                height={100}
-                src={'/logo_mcpflix.svg'}
-                width={120}
-              />
-              <p className="text-center font-sans text-medium text-xl">
-                {setName ? 'Bem vindo!' : 'Bem vindo de volta!'}
-              </p>
-              <p className="font-sans text-medium text-primary text-xs">
-                {setName ? 'Já possui uma conta?' : 'Não tem uma conta?'}
-                <Link
-                  className="font-semibold text-primary"
-                  href={setName ? '/login' : '/register'} // personaliza os textos dependendo da pagina pai (login ou registro)
-                >
-                  {setName ? ' Faça Login' : ' Registre-se'}
-                </Link>
-              </p>
+        <Card className="w-full max-w-sm bg-card">
+          <CardHeader>
+            <CardTitle>{setName ? 'Crie sua conta' : 'Login'}</CardTitle>
+            <CardDescription>
+              Coloque seus dados abaixo para entrar na sua conta.
+            </CardDescription>
+            <div className="h-full w-full">
+              <span className="text-muted-foreground text-sm">
+                {setName
+                  ? 'Já possui uma conta?'
+                  : 'Não possui uma conta?'}{' '}
+              </span>
+              <Link
+                className="text-primary text-sm hover:text-card-foreground"
+                href={setName ? '/login' : '/register'}
+              >
+                {setName ? 'Login' : 'Registrar-se'}
+              </Link>
+              <hr className="mt-4" />
             </div>
-            {setName && (
-              <Input
-                id="name"
-                name="name"
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Nome"
-                required // compartilha o estado do input para a pagina pai
-                type="text"
-              />
-            )}
-            <Input
-              id="email"
-              name="email"
-              onChange={(e) => setEmail(e.target.value)} // compartilha o estado do input para a pagina pai
-              placeholder="Email"
-              required
-              type="email"
-            />
-            <Input
-              id="passw"
-              name="passw"
-              onChange={(e) => setPassw(e.target.value)}
-              placeholder="Senha" // compartilha o estado do input para a pagina pai
-              required
-              type="password"
-            />
-
-            <p className="text-center font-medium font-sans text-red-500 text-xs">
-              {error}
-            </p>
-
-            <Button
-              className="w-full p-2 font-medium font-sans text-background text-sm"
-              type="submit"
-            >
-              Enviar
-            </Button>
-          </form>
-          <hr className="my-4 border-neutral-600" />
-          <div className="flex w-full items-center justify-center">
-            <Button
-              className="w-fit rounded-md px-12 py-2"
-              onClick={handleGoogleAuth}
-              type="button"
-              variant={'secondary'}
-            >
-              <i className="ri-google-fill" />
-            </Button>
-          </div>
-        </div>
+          </CardHeader>
+          <CardContent>
+            <form id="form" onSubmit={handler}>
+              <div className="flex flex-col gap-6">
+                {setName && (
+                  <div className="grid gap-2">
+                    <Label htmlFor="email">Nome</Label>
+                    <Input
+                      id="name"
+                      onChange={(e) => setName(e.target.value)}
+                      placeholder="John Doe"
+                      required
+                      type="text"
+                    />
+                  </div>
+                )}
+                <div className="grid gap-2">
+                  <Label htmlFor="email">Email</Label>
+                  <Input
+                    id="email"
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="m@example.com"
+                    required
+                    type="email"
+                  />
+                </div>
+                <div className="grid gap-2">
+                  <div className="flex items-center">
+                    <Label htmlFor="password">Senha</Label>
+                  </div>
+                  <Input
+                    id="password"
+                    onChange={(e) => setPassw(e.target.value)}
+                    required
+                    type="password"
+                  />
+                </div>
+              </div>
+              <CardFooter className="mt-4 w-full flex-col gap-2 p-0">
+                <Button className="w-full" type="submit">
+                  Entrar
+                </Button>
+                <Button
+                  className="w-full"
+                  onClick={handleGoogleAuth}
+                  type="button"
+                  variant="outline"
+                >
+                  Login with Google
+                </Button>
+              </CardFooter>
+            </form>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );

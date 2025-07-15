@@ -27,7 +27,7 @@ export default function Landing() {
           </Link>
           <Link href="/register">
             <button
-              className="rounded-xl bg-primary p-2 text-background text-sm"
+              className="rounded-xl bg-primary p-2 text-foreground text-sm"
               type="button"
             >
               Registrar
@@ -47,7 +47,7 @@ export default function Landing() {
         </p>
         <Link href="/login">
           <button
-            className="mt-4 rounded-xl bg-primary px-4 py-2 text-background text-sm"
+            className="mt-4 rounded-xl bg-primary px-4 py-2 text-foreground text-sm"
             type="button"
           >
             Comece agora
