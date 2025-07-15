@@ -3,7 +3,7 @@ import SideItem from './sideItem';
 export default function Sidebar() {
   return (
     // tag aside é responsiva e toma diferentes comportamentos dependendo da resolução da tela
-    <aside className="fixed bottom-2 z-10 my-4 flex max-h-24 w-fit min-w-16 flex-row items-center rounded-3xl bg-neutral-800 p-4 sm:w-fit md:sticky md:top-1/6 md:my-8 md:ml-8 md:max-h-fit md:flex-col">
+    <aside className="fixed bottom-2 z-10 my-4 flex max-h-24 w-fit min-w-16 flex-row items-center rounded-3xl bg-card p-4 text-foreground sm:w-fit md:sticky md:top-1/6 md:my-8 md:ml-8 md:max-h-fit md:flex-col">
       <Image
         alt="logo_mcpflix"
         className="mx-4 md:my-8"
@@ -17,7 +17,7 @@ export default function Sidebar() {
 
         <SideItem name={'Favoritos'} path="/fav" pathIcon={'ri-heart-3-line'} />
 
-        <hr className="mx-2 hidden border-neutral-600 md:block" />
+        <hr className="mx-2 hidden md:block" />
       </div>
     </aside>
   );
