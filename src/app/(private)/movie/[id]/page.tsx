@@ -38,7 +38,6 @@ export default function PageMovie({ params }: Props) {
         .single(); // retorna APENAS um filme que foi encontrado com tais condições
 
       if (error) {
-        console.error(error);
         setErrorMessage('Filme não encontrado');
       } else {
         setMovie(data);
@@ -54,7 +53,7 @@ export default function PageMovie({ params }: Props) {
   if (!movie) {
     return (
       <div className="flex h-screen items-center justify-center">
-        <div className="h-32 w-32 animate-spin rounded-full border-green-400 border-t-2 border-b-2" />
+        <div className="h-32 w-32 animate-spin rounded-full border-primary border-t-2 border-b-2" />
       </div>
     ); // animação que aparece enquanto se espera a requisição
   }

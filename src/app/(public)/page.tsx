@@ -95,7 +95,7 @@ export default function Landing() {
         </div>
       </motion.div>
 
-      <hr className="w-5/6 border-neutral-700" />
+      <hr className="w-5/6 border-border" />
 
       <motion.div
         animate={{ opacity: 1 }}
@@ -103,10 +103,10 @@ export default function Landing() {
         transition={{ duration: 5 }}
       >
         <div className="mt-16 flex w-full flex-col items-center justify-between gap-12 pr-4 text-center">
-          <h1 className="font-medium text-5xl text-white">Features</h1>
+          <h1 className="font-medium text-5xl text-foreground">Features</h1>
           <div className="flex w-5/6 flex-row items-center justify-between gap-4">
             <div className="w-1/4">
-              <h1 className="font-medium text-white text-xl md:text-3xl">
+              <h1 className="font-medium text-foreground text-xl md:text-3xl">
                 Favoritos
               </h1>
               <p className="mt-4 text-center text-gray-400 text-sm md:text-base">
@@ -116,7 +116,7 @@ export default function Landing() {
             </div>
 
             <div className="w-1/4">
-              <h1 className="font-medium text-white text-xl md:text-3xl">
+              <h1 className="font-medium text-foreground text-xl md:text-3xl">
                 Qualidade
               </h1>
               <p className="mt-4 text-center text-gray-400 text-sm md:text-base">
@@ -126,7 +126,7 @@ export default function Landing() {
             </div>
 
             <div className="w-1/4">
-              <h1 className="font-medium text-white text-xl md:text-3xl">
+              <h1 className="font-medium text-foreground text-xl md:text-3xl">
                 Pesquisa
               </h1>
               <p className="mt-4 text-center text-gray-400 text-sm md:text-base">

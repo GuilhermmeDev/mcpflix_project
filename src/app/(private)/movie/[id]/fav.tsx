@@ -70,7 +70,7 @@ export default function Fav({ movieId }: FavProps) {
   return (
     <i
       className={`${
-        fav ? 'ri-heart-3-fill text-green-400' : 'ri-heart-3-line text-white'
+        fav ? 'ri-heart-3-fill text-primary' : 'ri-heart-3-line text-foreground'
       } text-3xl`}
       onClick={handleFavClick}
     />
