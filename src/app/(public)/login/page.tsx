@@ -23,7 +23,6 @@ export default function Login() {
       });
 
       if (error && error instanceof AuthApiError) {
-        console.error(error);
         setError('Seu email e/ou senha estão incorretos');
       } else {
         router.push('/dashboard'); // redireciona o usuario se o login for bem sucedido

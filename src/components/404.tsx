@@ -7,7 +7,7 @@ export default function Page404({ error }: { error: string }) {
       <p className="text-xl">{error}</p>
       <Link href="/dashboard">
         <button
-          className="rounded-md bg-green-400 px-4 py-2 text-black text-sm"
+          className="rounded-md bg-primary px-4 py-2 text-secondary text-sm"
           type="button"
         >
           Voltar para a página inicial

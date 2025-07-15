@@ -8,7 +8,7 @@ export default function Landing() {
   useAuth();
   return (
     <div className="mb-48 flex w-full flex-col items-center">
-      <div className="m-8 flex w-5/6 flex-row items-center justify-between rounded-lg bg-accent p-4">
+      <div className="m-8 flex w-5/6 flex-row items-center justify-between rounded-lg bg-card p-4">
         <Image
           alt="logo"
           className="h-8 md:h-auto"
@@ -27,7 +27,7 @@ export default function Landing() {
           </Link>
           <Link href="/register">
             <button
-              className="rounded-xl bg-primary p-2 text-foreground text-sm"
+              className="rounded-xl bg-primary p-2 text-secondary text-sm"
               type="button"
             >
               Registrar
@@ -47,7 +47,7 @@ export default function Landing() {
         </p>
         <Link href="/login">
           <button
-            className="mt-4 rounded-xl bg-primary px-4 py-2 text-foreground text-sm"
+            className="mt-4 rounded-xl bg-primary px-4 py-2 text-secondary text-sm"
             type="button"
           >
             Comece agora

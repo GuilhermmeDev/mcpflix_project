@@ -72,7 +72,7 @@ export default function Navbar({ onSearch }: NavbarProps) {
             {searchValue}
           </div>
         )}
-        <div className="mr-4 flex h-12 w-full flex-row items-center justify-center rounded-3xl bg-neutral-800 px-4 text-sm md:w-2/5">
+        <div className="mr-4 flex h-12 w-full flex-row items-center justify-center rounded-3xl bg-card px-4 text-sm md:w-2/5">
           <input
             className="h-full w-full border-none bg-transparent focus:outline-none"
             id="search_input"
@@ -97,14 +97,14 @@ export default function Navbar({ onSearch }: NavbarProps) {
             />
           )}
           {!user && (
-            <i className="ri-user-line rounded-2xl bg-neutral-800 p-4 text-lg" />
+            <i className="ri-user-line rounded-2xl bg-card p-4 text-lg" />
           )}
         </div>
 
         <div className={`${isLogout ? 'relative' : 'hidden'}`}>
           <button
             className={
-              'flex items-center gap-2 rounded-lg bg-red-600 p-2 text-white transition duration-300 ease-in-out hover:bg-red-500'
+              'flex items-center gap-2 rounded-lg bg-destructive p-2 text-foreground transition duration-300 ease-in-out hover:bg-red-500'
             }
             onClick={handleLogout}
             type="button"

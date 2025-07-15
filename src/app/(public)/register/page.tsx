@@ -41,7 +41,6 @@ export default function Register() {
         });
       }
       if (error) {
-        console.error(error);
         setError('Alguma coisa deu errado :(');
       } else {
         router.push('/dashboard');

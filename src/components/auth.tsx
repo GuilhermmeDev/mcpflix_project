@@ -111,7 +111,7 @@ export default function Auth({
                   type="button"
                   variant="outline"
                 >
-                  Login with Google
+                  Login com Google
                 </Button>
               </CardFooter>
             </form>
