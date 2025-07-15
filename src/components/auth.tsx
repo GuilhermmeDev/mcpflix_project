@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import useAuth from '@/auth/checkAuth';
 import { Button } from '@/components/ui/button';
@@ -15,6 +14,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { supabase } from '@/lib/supabaseClient';
+import { AlertError } from './alert_error';
 
 interface AuthProps {
   handler: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
@@ -64,6 +64,7 @@ export default function Auth({
             </div>
           </CardHeader>
           <CardContent>
+            {error && <AlertError className="mb-4" error={error} />}
             <form id="form" onSubmit={handler}>
               <div className="flex flex-col gap-6">
                 {setName && (
@@ -101,7 +102,7 @@ export default function Auth({
                 </div>
               </div>
               <CardFooter className="mt-4 w-full flex-col gap-2 p-0">
-                <Button className="w-full" type="submit">
+                <Button className="w-full text-background" type="submit">
                   Entrar
                 </Button>
                 <Button

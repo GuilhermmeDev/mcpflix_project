@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 import './globals.css';
 import 'remixicon/fonts/remixicon.css';
+import { AlertError } from '@/components/alert_error';
 import Footer from '@/components/footer';
 
 const poppins = Poppins({
