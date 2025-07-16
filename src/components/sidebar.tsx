@@ -13,9 +13,10 @@ interface SideItemProps {
   path: string;
   icon: React.ReactNode;
   isActive?: boolean;
+  isBeta?: boolean;
 }
 
-function SideItem({ name, path, icon, isActive }: SideItemProps) {
+function SideItem({ name, path, icon, isActive, isBeta }: SideItemProps) {
   return (
     <Button
       asChild
@@ -29,6 +30,7 @@ function SideItem({ name, path, icon, isActive }: SideItemProps) {
       <Link href={path}>
         <span className="flex-shrink-0">{icon}</span>
         <span className="hidden truncate font-medium md:block">{name}</span>
+        {isBeta && <Badge variant={'secondary'}>BETA</Badge>}
       </Link>
     </Button>
   );
@@ -41,7 +43,7 @@ export default function Sidebar() {
   const navigationItems = [
     {
       name: 'Home',
-      path: '/',
+      path: '/dashboard',
       icon: <Home className="h-5 w-5" />,
     },
     {
@@ -54,12 +56,12 @@ export default function Sidebar() {
   const bottomItems = [
     {
       name: 'Perfil',
-      path: '/perfil',
+      path: '/dev/profile',
       icon: <User className="h-5 w-5" />,
     },
     {
       name: 'Configurações',
-      path: '/configuracoes',
+      path: '/dev/config',
       icon: <Settings className="h-5 w-5" />,
     },
   ];
@@ -139,6 +141,7 @@ export default function Sidebar() {
                 <SideItem
                   icon={item.icon}
                   isActive={pathname === item.path}
+                  isBeta={true}
                   key={item.path}
                   name={item.name}
                   path={item.path}

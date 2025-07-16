@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import useAuth from '@/auth/checkAuth';
+import { AlertError } from '@/components/alert_error';
 import Movie from '@/components/movie';
 import TopBar from '@/components/topBar';
 import { supabase } from '@/lib/supabaseClient';
@@ -31,7 +32,7 @@ export default function FavPage() {
             .in('id', userFavs);
 
           if (error) {
-            console.error(error);
+            <AlertError error={`${error}`} />;
           } else {
             setMovies(data);
           }
