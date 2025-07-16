@@ -11,7 +11,6 @@ const useAuth = () => {
   useEffect(() => {
     const checkAuth = async () => {
       const { data } = await supabase.auth.getUser();
-      console.log(data);
 
       // Se o usuário estiver autenticado e em uma rota pública, redirecione para "/"
       if (data.user && publicRoutes.includes(pathname)) {
