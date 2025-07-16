@@ -152,7 +152,7 @@ export default function Sidebar() {
 
           {/* User Profile Card */}
           <Card className="mt-auto border-0 bg-muted/30">
-            <div className="p-4">
+            <div className="max-w-48 p-4">
               <div className="flex items-center gap-3">
                 <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/20">
                   <User className="h-4 w-4 text-primary" />
