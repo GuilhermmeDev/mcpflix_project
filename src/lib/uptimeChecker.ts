@@ -1,5 +1,5 @@
 import { Resend } from 'resend';
-import { envResult } from './env';
+import { envResult } from './env.ts';
 
 const resend = new Resend(envResult.RESEND_API_KEY);
 async function checkSupabase() {

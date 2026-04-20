@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import 'dotenv/config';
 
 const envSchema = z.object({
   NEXT_PUBLIC_SUPABASE_URL: z.string().url(),
