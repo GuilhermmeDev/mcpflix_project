@@ -36,6 +36,8 @@ export default function Movie({ filme }: movieProps) {
             alt={filme.title}
             className="object-cover object-center transition-transform duration-300 group-hover:scale-110"
             fill
+            loading="lazy"
+            quality={20}
             sizes="(max-width: 500px) 100vw, (max-width: 1200px) 50vw, 33vw"
             src={filme.link_cover}
           />
