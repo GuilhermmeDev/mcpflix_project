@@ -1,6 +1,6 @@
 import { Resend } from 'resend';
-import { clientEnv } from './client';
-import { serverEnv } from './server';
+import { clientEnv } from './client.ts';
+import { serverEnv } from './server.ts';
 
 const resend = new Resend(serverEnv.RESEND_API_KEY);
 async function checkSupabase() {
