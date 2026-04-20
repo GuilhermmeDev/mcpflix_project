@@ -5,7 +5,10 @@ const serverEnvSchema = z.object({
   ADMIN_EMAIL: z.string().email(),
 });
 
-const result = serverEnvSchema.safeParse(process.env);
+const result = serverEnvSchema.safeParse({
+  RESEND_API_KEY: process.env.RESEND_API_KEY,
+  ADMIN_EMAIL: process.env.ADMIN_EMAIL,
+});
 
 if (!result.success) {
   console.error('❌ Invalid server env:', result.error.format());
