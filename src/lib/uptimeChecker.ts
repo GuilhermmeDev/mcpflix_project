@@ -4,7 +4,7 @@ import { serverEnv } from './server.ts';
 
 const resend = new Resend(serverEnv.RESEND_API_KEY);
 async function checkSupabase() {
-  const url = `${clientEnv.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/movies?select=id&limit=1`;
+  const url = `${clientEnv.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/movies?select=*`;
 
   try {
     const response = await fetch(url, {
@@ -12,6 +12,7 @@ async function checkSupabase() {
       headers: {
         apikey: clientEnv.NEXT_PUBLIC_SUPABASE_ANON_KEY,
         Authorization: `Bearer ${clientEnv.NEXT_PUBLIC_SUPABASE_ANON_KEY}`,
+        'Prefer': 'count=exact'
       },
     });
     if (response.ok) {
